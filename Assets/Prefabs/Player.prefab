@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2884701642669313783}
   - component: {fileID: 2884701642669313672}
   - component: {fileID: 2884701642669313674}
-  - component: {fileID: 2884701642669313781}
+  - component: {fileID: 7938445735876241956}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2884701642669313783
 SpriteRenderer:
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: dab9e3a25172e27408a07881e12177fb, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 59977f2d242a3a7489a7016490d8b0bf, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -114,11 +114,11 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 87bacd51-d301-495a-bf09-6c4210d7ab8f
-    m_ActionName: Player/Movement
+    m_ActionId: dc2b5f0f-0d00-4c2a-a65f-cd0436f6a883
+    m_ActionName: MainControls/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: MainControls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!58 &2884701642669313674
@@ -137,7 +137,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &2884701642669313781
+--- !u!114 &7938445735876241956
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,8 +146,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2884701642669313782}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e234a80cb97de4a4e98b06e7cff4dcd4, type: 3}
+  m_Script: {fileID: 11500000, guid: 917659b5d4fcfce4d860c684c4a310ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  playerSpeed: 4.93
