@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     
     private PlayerInput playerInput;
     private InputAction moveAction;
+    private Rigidbody2D rb;
 
     Vector2 move;
 
@@ -17,7 +18,7 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 move = playerInput.actions["Move"].ReadValue<Vector2>();
         float playerSpeed = 5f * Time.deltaTime;
+
         transform.Translate(move * playerSpeed);
         
     }
