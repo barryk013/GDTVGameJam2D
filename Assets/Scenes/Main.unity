@@ -424,7 +424,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7786885, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -491,6 +491,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1559045013 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2884701642669313782, guid: 7003d3b6e39725d40af73cdfd40748b4, type: 3}
+  m_PrefabInstance: {fileID: 2884701642205829322}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1559045018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559045013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 917659b5d4fcfce4d860c684c4a310ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1823569068
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,7 +555,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7786885, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -825,6 +842,22 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2884701642669313672, guid: 7003d3b6e39725d40af73cdfd40748b4, type: 3}
+      propertyPath: m_Actions
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 59977f2d242a3a7489a7016490d8b0bf, type: 3}
+    - target: {fileID: 2884701642669313672, guid: 7003d3b6e39725d40af73cdfd40748b4, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: MainControls
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884701642669313672, guid: 7003d3b6e39725d40af73cdfd40748b4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_ActionId
+      value: dc2b5f0f-0d00-4c2a-a65f-cd0436f6a883
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884701642669313672, guid: 7003d3b6e39725d40af73cdfd40748b4, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_ActionName
+      value: MainControls/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+      objectReference: {fileID: 0}
     - target: {fileID: 2884701642669313780, guid: 7003d3b6e39725d40af73cdfd40748b4, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -873,7 +906,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2884701642669313781, guid: 7003d3b6e39725d40af73cdfd40748b4, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 7003d3b6e39725d40af73cdfd40748b4, type: 3}
 --- !u!114 &3638603095570586442
