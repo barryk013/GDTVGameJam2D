@@ -19,14 +19,21 @@ public class ItemManager : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        nameCanvas.SetActive(true);    
+        ShowDescription();
     }
 
     private void OnTriggerExit2D(Collider2D other) {
+        HideDescription();
+    }
+
+    public void ShowDescription()
+    {
+        nameCanvas.SetActive(true);
+    }
+    public void HideDescription()
+    {
         nameCanvas.SetActive(false);
     }
 
-    
 
-    
 }

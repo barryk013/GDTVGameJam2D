@@ -5,12 +5,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    
+    [SerializeField] private InputScriptableObject input;
+    [SerializeField] private float movementSpeed = 5f;
     private PlayerInput playerInput;
     private InputAction moveAction;
     private Rigidbody2D rb;
 
-    Vector2 move;
 
     private void Awake() {
         playerInput = GetComponent<PlayerInput>();
@@ -29,10 +29,6 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        Vector2 move = playerInput.actions["Move"].ReadValue<Vector2>();
-        float playerSpeed = 5f * Time.deltaTime;
-
-        transform.Translate(move * playerSpeed);
-        
+        transform.Translate(input.MovementVector * movementSpeed * Time.deltaTime);        
     }
 }
