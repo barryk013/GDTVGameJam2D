@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14706e8e272d0ec40a9eca0db7500aa4, type: 3}
   m_Name: Grave1_Paragraph1
   m_EditorClassIdentifier: 
-  Text: Paragraph 1
   LettersPerSecond: 5
+  Text: Paragraph 1
