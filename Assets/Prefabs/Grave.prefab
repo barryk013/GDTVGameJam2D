@@ -1242,9 +1242,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textBubble: {fileID: 8318752663604055185}
-  text: {fileID: 8318752664882612294}
+  storyText: {fileID: 8318752664882612294}
   paragraphs:
   - {fileID: 11400000, guid: 63848103d69ca7049857e65f459b86c2, type: 2}
   - {fileID: 11400000, guid: 312249028afeb904a812dbd4917e3705, type: 2}
   - {fileID: 11400000, guid: a694fa37947edbb4daaee0a9081324d3, type: 2}
+  textTypingInterval: 2
   storyInProgress: 0

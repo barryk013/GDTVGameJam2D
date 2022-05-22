@@ -6,8 +6,10 @@ using TMPro;
 public class Story : MonoBehaviour
 {
     [SerializeField] private GameObject textBubble;
-    [SerializeField] private TextMeshProUGUI text;
-    [SerializeField] private List<TextScriptableObject> paragraphs = new List<TextScriptableObject>();    
+    [SerializeField] private TextMeshProUGUI storyText;
+    [SerializeField] private List<TextScriptableObject> paragraphs = new List<TextScriptableObject>();
+
+    [SerializeField] private float textTypingInterval = 2;
 
     private int currentParagraphIndex = 0;
 
@@ -32,7 +34,7 @@ public class Story : MonoBehaviour
     public void EndStory()
     {
         textBubble.SetActive(false);
-        text.text = string.Empty;
+        storyText.text = string.Empty;
         storyInProgress = false;
 
         StopAllCoroutines();
@@ -60,13 +62,22 @@ public class Story : MonoBehaviour
 
     IEnumerator TypeStoryCoroutine()
     {
-        text.text = string.Empty;
-        WaitForSeconds interval = new WaitForSeconds( 1 / paragraphs[currentParagraphIndex].LettersPerSecond);
+        storyText.text = string.Empty;
+        string textToWrite = paragraphs[currentParagraphIndex].Text;
 
-        foreach (var letter in paragraphs[currentParagraphIndex].Text)
+        WaitForSeconds interval = new WaitForSeconds(textTypingInterval / textToWrite.Length);
+        
+        int currentCharIndex = 0;
+
+        while(currentCharIndex <= textToWrite.Length)
         {
-            text.text += letter;
+            string visibleText = textToWrite.Substring(0, currentCharIndex);
+            string invisibleText = $"<color=#00000000>{textToWrite.Substring(currentCharIndex)}</color>";
+
+            storyText.text = visibleText + invisibleText;
+
+            currentCharIndex++;
             yield return interval;
-        }        
+        }  
     }
 }
