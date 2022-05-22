@@ -2,25 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class Story : MonoBehaviour
 {
     [SerializeField] private GameObject textBubble;
     [SerializeField] private TextMeshProUGUI storyText;
     [SerializeField] private List<TextScriptableObject> paragraphs = new List<TextScriptableObject>();
+    [SerializeField] private TextScriptableObject hint;
 
     [SerializeField] private float textTypingInterval = 2;
 
     private int currentParagraphIndex = 0;
 
-    public bool storyInProgress = false;
+    private bool storyInProgress = false;
+
+    public event Action<string> StoryCompleted;
 
     private void Awake()
     {
         textBubble.SetActive(false);
     }
 
-    public void DisplayStory()
+    public void StartStory()
     {
         if(storyInProgress) return;
 
@@ -44,7 +48,11 @@ public class Story : MonoBehaviour
     public void NextPage()
     {
         if (currentParagraphIndex == paragraphs.Count - 1)
+        {
+            StoryCompleted?.Invoke(hint.Text);
+            EndStory();
             return;
+        }
 
         StopAllCoroutines();
         currentParagraphIndex++;
@@ -54,10 +62,15 @@ public class Story : MonoBehaviour
     {
         if (currentParagraphIndex == 0)
             return;
-
+        
         StopAllCoroutines();
         currentParagraphIndex--;
-        StartCoroutine(TypeStoryCoroutine());
+        storyText.text = paragraphs[currentParagraphIndex].Text;
+    }
+
+    public string GetHint()
+    {
+        return hint.Text;
     }
 
     IEnumerator TypeStoryCoroutine()
@@ -65,7 +78,7 @@ public class Story : MonoBehaviour
         storyText.text = string.Empty;
         string textToWrite = paragraphs[currentParagraphIndex].Text;
 
-        WaitForSeconds interval = new WaitForSeconds(textTypingInterval / textToWrite.Length);
+        WaitForSeconds timePerCharacter = new WaitForSeconds(textTypingInterval / textToWrite.Length);
         
         int currentCharIndex = 0;
 
@@ -77,7 +90,7 @@ public class Story : MonoBehaviour
             storyText.text = visibleText + invisibleText;
 
             currentCharIndex++;
-            yield return interval;
+            yield return timePerCharacter;
         }  
     }
 }

@@ -10,7 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14706e8e272d0ec40a9eca0db7500aa4, type: 3}
-  m_Name: Grave1_Paragraph2
+  m_Name: Grave2_Hint
   m_EditorClassIdentifier: 
-  Text: Paragraph 2
-  LettersPerSecond: 5
+  Text: Hint 2

@@ -6,95 +6,154 @@ using UnityEngine.InputSystem;
 public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private InputScriptableObject input;
-    [SerializeField] private LayerMask itemLayer;
-    [SerializeField] private LayerMask graveLayer;
 
-    private Grave nearbyGrave = null;
-    private ItemManager nearbyItem = null;
+    [SerializeField] private List<IInteractable> interactableObjects = new List<IInteractable>();
+    private IInteractable selectedObject;
+    private Coroutine interactionCoroutine;
 
-    private ItemManager itemInHand;
+    private Item itemInHand;
+
+    private Player player;
+
+    private void Awake()
+    {
+        player = GetComponent<Player>();
+    }
 
 
     private void OnEnable()
     {
         input.InteractionPerformed += OnInteractionPerformed;
         input.InteractionCanceled += OnInteractionCanceled;
-        input.PickUpActionPerformed += OnItemPickUp;
+        input.PickUpActionPerformed += OnItemPickUpPerformed;
     }
     private void OnDisable()
     {
         input.InteractionPerformed -= OnInteractionPerformed;
         input.InteractionCanceled -= OnInteractionCanceled;
-        input.PickUpActionPerformed -= OnItemPickUp;
+        input.PickUpActionPerformed -= OnItemPickUpPerformed;
     }
 
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        int isItem = (int)Mathf.Pow(2, other.gameObject.layer) & itemLayer;
-        int isGrave = (int)Mathf.Pow(2, other.gameObject.layer) & graveLayer;
+        IInteractable interactableObject = other.GetComponent<IInteractable>();
 
-        if (isItem != 0)
-        {
-            nearbyItem = other.GetComponent<ItemManager>();
-        }
-        if (isGrave != 0)
-        {
-            nearbyGrave = other.GetComponent<Grave>();
-        }
+        if (interactableObject == null)
+            return;
+
+
+        interactableObjects.Add(interactableObject);
+
+        if (interactionCoroutine == null)
+            interactionCoroutine = StartCoroutine(SelectClosestInteractableObject());
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        int isItem = (int)Mathf.Pow(2, other.gameObject.layer) & itemLayer;
-        int isGrave = (int)Mathf.Pow(2, other.gameObject.layer) & graveLayer;
+        IInteractable interactableObject = other.GetComponent<IInteractable>();
 
-        if (isItem != 0)
-        {
-            if(nearbyItem != null)
-                nearbyItem.HideDescription();
+        if (interactableObject == null)
+            return;
 
-            nearbyItem = null;
-        }
-        if (isGrave != 0)
+
+        interactableObjects.Remove(interactableObject);
+
+        if (interactableObjects.Count == 0)
         {
-            if (nearbyGrave != null)
-                nearbyGrave.InteractionCanceled();
-            nearbyGrave = null;
+            StopCoroutine(interactionCoroutine);
+            interactionCoroutine = null;
+
+            if (selectedObject != null)
+            {
+                selectedObject.Deselect();
+                selectedObject.StopInteraction();
+                selectedObject = null;
+            }
         }
     }
 
+    #region event listeners
     private void OnInteractionPerformed()
     {
-        if (nearbyGrave == null)
+        if (selectedObject == null)
             return;
-        print("test");
-        nearbyGrave.InteractionPerformed();
+
+        selectedObject.StartInteraction();
+
+        if (selectedObject is Grave)
+        {
+            ((Grave)selectedObject).Story.StoryCompleted += OnStoryCompleted;
+        }
     }
     private void OnInteractionCanceled()
     {
-        if (nearbyGrave == null)
+        if (selectedObject == null)
             return;
 
-        nearbyGrave.InteractionCanceled();
+        selectedObject.StopInteraction();
+
+        if (selectedObject is Grave)
+        {
+            ((Grave)selectedObject).Story.StoryCompleted -= OnStoryCompleted;
+        }
     }
-    private void OnItemPickUp()
+    private void OnItemPickUpPerformed()
     {
-        if (nearbyItem == null) return;
+        if (selectedObject is not Item || selectedObject == null)
+            return;
 
         if (itemInHand != null)
-        {
-            //drop current item and pick up new item
-            itemInHand.transform.position = transform.position;
-            itemInHand.gameObject.SetActive(true);
+            itemInHand.DropItem(selectedObject.Transform.position);
 
-            itemInHand = nearbyItem;
-        }
-        else
-        {
-            itemInHand = nearbyItem;
-            itemInHand.gameObject.SetActive(false);
-        }
 
-        nearbyItem = null;
+        itemInHand = (Item)selectedObject;
+        itemInHand.PickUpItem();
+        interactableObjects.Remove(selectedObject);
+
+    }
+    private void OnStoryCompleted(string hint)
+    {
+        player.ShowHint(hint);
+        OnInteractionCanceled();
+    }
+    #endregion
+
+
+    IEnumerator SelectClosestInteractableObject()
+    {
+        while (true)
+        {
+            float minSqrDist = float.MaxValue;
+            IInteractable closestObj = null;
+
+            foreach (IInteractable obj in interactableObjects)
+            {
+                float distToObj = Vector2.SqrMagnitude(obj.Transform.position - transform.position);
+                if (distToObj < minSqrDist)
+                {
+                    closestObj = obj;
+                    minSqrDist = distToObj;
+                }
+            }
+
+            //update selected object
+            if (closestObj != selectedObject)
+            {
+                //deselect old object
+                if (selectedObject != null)
+                {
+                    selectedObject.Deselect();
+                    selectedObject.StopInteraction();
+                }
+
+
+                if (closestObj != null)
+                    closestObj.Select();
+
+                selectedObject = closestObj;
+            }
+
+            yield return null;
+        }
     }
 }

@@ -38,8 +38,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.7211}
-  m_SizeDelta: {x: 0, y: -1.4422}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8318752663604055214
 CanvasRenderer:
@@ -386,8 +386,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 5.65}
-  m_SizeDelta: {x: 5, y: 5}
+  m_AnchoredPosition: {x: 0, y: 7.5}
+  m_SizeDelta: {x: 5, y: 3.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8318752664012417685
 Canvas:
@@ -1070,8 +1070,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.3
-  m_fontSizeBase: 0.3
+  m_fontSize: 0.25
+  m_fontSizeBase: 0.25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1229,6 +1229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionPrompt: {fileID: 8318752664474960699}
+  cameraFocusPoint: {fileID: 8318752664012417688}
 --- !u!114 &8318752665155053284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1247,5 +1248,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 63848103d69ca7049857e65f459b86c2, type: 2}
   - {fileID: 11400000, guid: 312249028afeb904a812dbd4917e3705, type: 2}
   - {fileID: 11400000, guid: a694fa37947edbb4daaee0a9081324d3, type: 2}
+  hint: {fileID: 11400000, guid: b39567efaed66bc4c8124768a2435efd, type: 2}
   textTypingInterval: 2
-  storyInProgress: 0

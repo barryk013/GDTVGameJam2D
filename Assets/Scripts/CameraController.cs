@@ -10,6 +10,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera zoomedInCamera;
     [SerializeField] private CinemachineVirtualCamera zoomedOutCamera;
 
+    private Transform player;
+
     private void Awake()
     {
         if (Instance != null)
@@ -22,19 +24,15 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        SetFollowTarget();
-    }
-
-    private void SetFollowTarget()
-    {
-        Transform player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
 
         zoomedInCamera.Follow = player;
         zoomedOutCamera.Follow = player;
     }
 
-    public void ZoomIn()
+    public void ZoomIn(Transform target)
     {
+        zoomedInCamera.Follow = target;
         zoomedInCamera.Priority = 1;
         zoomedOutCamera.Priority = 0;
     }
