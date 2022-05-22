@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     private InputAction moveAction;
     private Rigidbody2D rb;
 
+    private GameObject pickedItem;
+
     Vector2 move;
 
     private void Awake() {
@@ -33,6 +35,11 @@ public class PlayerController : MonoBehaviour
         float playerSpeed = 5f * Time.deltaTime;
 
         transform.Translate(move * playerSpeed);
+        
+    }
+
+    private void PickItem()
+    {
         
     }
 }

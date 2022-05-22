@@ -376,7 +376,7 @@ GameObject:
   - component: {fileID: 489559714}
   - component: {fileID: 489559716}
   m_Layer: 0
-  m_Name: TestObject
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -609,7 +609,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7785233, y: 1}
+    m_SensorSize: {x: 1.5737327, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -763,7 +763,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7785233, y: 1}
+    m_SensorSize: {x: 1.5737327, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
