@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5204367721989237991}
   - component: {fileID: 3601556173685173670}
-  - component: {fileID: 1631640395391716396}
   m_Layer: 6
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -73,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1229376261
   m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingOrder: 600
   m_Sprite: {fileID: 21300000, guid: dc1852e00ed16a04291604a46d6a1970, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -85,19 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1631640395391716396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1365930726100367611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57e342bb229b2c548bfbc3cb98470806, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  input: {fileID: 11400000, guid: 527b3a3384801114099b5597bfe1ae68, type: 2}
 --- !u!1 &4890106977339954995
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,6 +234,7 @@ GameObject:
   - component: {fileID: 4890106977636803739}
   - component: {fileID: 4890106977636803738}
   - component: {fileID: 4890106977636803737}
+  - component: {fileID: 6960438620026514070}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -446,6 +433,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerThoughtBubble: {fileID: 4890106978891062896}
   playerThoughtText: {fileID: 4890106977339954994}
+--- !u!114 &6960438620026514070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890106977636803745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e342bb229b2c548bfbc3cb98470806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: {fileID: 11400000, guid: 527b3a3384801114099b5597bfe1ae68, type: 2}
+  playerSpriteRenderer: {fileID: 3601556173685173670}
 --- !u!1 &4890106978368624129
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,8 +506,8 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 442546927
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &4890106978368624254
 MonoBehaviour:
@@ -608,7 +609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.20784314}
+  m_Color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

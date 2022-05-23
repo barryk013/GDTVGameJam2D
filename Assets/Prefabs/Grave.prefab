@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.20784314}
+  m_Color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -174,7 +174,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -1.5}
+  m_AnchoredPosition: {x: -2, y: -2.23}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8318752663606386040
@@ -466,8 +466,8 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingLayerID: 442546927
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &8318752664012417686
 MonoBehaviour:
@@ -528,7 +528,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8318752664474960698
 RectTransform:
   m_ObjectHideFlags: 0
@@ -547,7 +547,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.42, y: -2.22}
+  m_AnchoredPosition: {x: 2.18, y: -4.02}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8318752664474960695
@@ -682,7 +682,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: -1.5}
+  m_AnchoredPosition: {x: 2, y: -2.23}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8318752664504887916
@@ -1196,6 +1196,7 @@ GameObject:
   - component: {fileID: 8318752665155053282}
   - component: {fileID: 8318752665155053283}
   - component: {fileID: 8318752665155053284}
+  - component: {fileID: 1218833278868663102}
   m_Layer: 8
   m_Name: Grave
   m_TagString: Untagged
@@ -1271,6 +1272,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a694fa37947edbb4daaee0a9081324d3, type: 2}
   hint: {fileID: 11400000, guid: b39567efaed66bc4c8124768a2435efd, type: 2}
   textTypingInterval: 2
+--- !u!114 &1218833278868663102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8318752665155053285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a5511fae5ef8448982d186859ba9e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 2091851322588450470}
 --- !u!1 &8323102209721886018
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,7 +1295,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8476310553079550418}
   - component: {fileID: 2091851322588450470}
-  - component: {fileID: 7431339902036551902}
   m_Layer: 8
   m_Name: GraveSprite
   m_TagString: Untagged
@@ -1344,7 +1357,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1229376261
   m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingOrder: 600
   m_Sprite: {fileID: 21300000, guid: 3812651fba928f442b25afa61077c79b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1356,15 +1369,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!114 &7431339902036551902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8323102209721886018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2a5511fae5ef8448982d186859ba9e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

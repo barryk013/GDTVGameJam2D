@@ -32,7 +32,10 @@ public class InputScriptableObject : ScriptableObject
     #region Values
     public Vector2 MovementVector
     {
-        get => inputManager.ReadMovementVector();
+        get 
+        { 
+            return inputManager == null ? Vector2.zero : inputManager.ReadMovementVector(); 
+        }
     }
     #endregion
 }
