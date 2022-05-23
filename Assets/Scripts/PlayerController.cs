@@ -7,15 +7,11 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private InputScriptableObject input;
     [SerializeField] private float movementSpeed = 5f;
-    private PlayerInput playerInput;
-    private InputAction moveAction;
     private Rigidbody2D rb;
 
 
 
     private void Awake() {
-        playerInput = GetComponent<PlayerInput>();
-        moveAction = playerInput.actions["Move"];
     }
     void Start()
     {
@@ -30,17 +26,6 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        rb.velocity = input.MovementVector * movementSpeed * Time.fixedDeltaTime;
-
-        if(input.MovementVector.x > 0)
-        {
-            print("facing right");
-        }
-        else if(input.MovementVector.x < 0)
-        {
-            print("facing left");
-        }
-
-        //transform.Translate(input.MovementVector * movementSpeed * Time.deltaTime);        
+        rb.velocity = input.MovementVector * movementSpeed * Time.fixedDeltaTime;       
     }
 }
