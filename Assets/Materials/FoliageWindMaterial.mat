@@ -46,6 +46,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaCutoff: 0.5
+    - _Blend: 0.354
+    - _CellDensity: 4.14
+    - _PixelationAmount: 20
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Speed: 1
     - _WindIntensity: 0.5
     - _WindSpeed: 0.3
     m_Colors:
