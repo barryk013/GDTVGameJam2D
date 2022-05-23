@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4786492484241361643}
   - component: {fileID: 2983309534002668000}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: BaseCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1197,7 +1197,7 @@ GameObject:
   - component: {fileID: 8318752665155053283}
   - component: {fileID: 8318752665155053284}
   - component: {fileID: 1218833278868663102}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Grave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1357,7 +1357,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1229376261
   m_SortingLayer: 1
-  m_SortingOrder: 600
+  m_SortingOrder: 855
   m_Sprite: {fileID: 21300000, guid: 3812651fba928f442b25afa61077c79b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -12,8 +12,8 @@ TagManager:
   - Water
   - UI
   - Player
-  - Item
-  - Grave
+  - Interactable
+  - Camera
   - 
   - 
   - 
@@ -46,4 +46,7 @@ TagManager:
     locked: 0
   - name: Objects
     uniqueID: 1229376261
+    locked: 0
+  - name: UI
+    uniqueID: 442546927
     locked: 0

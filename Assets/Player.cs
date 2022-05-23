@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject playerThoughtBubble;
     [SerializeField] private TextMeshProUGUI playerThoughtText;
 
+    private Coroutine showHintCoroutine;
+
     private void Awake()
     {
         playerThoughtBubble.SetActive(false);
@@ -21,12 +23,24 @@ public class Player : MonoBehaviour
 
     public void ShowHint(string hint)
     {
-        StartCoroutine(TypeHintCoroutine(hint));
+        if(showHintCoroutine == null)
+            showHintCoroutine = StartCoroutine(TypeHintCoroutine(hint));
+
+        playerThoughtBubble.SetActive(true);
+    }
+    public void HideHint()
+    {
+        if(showHintCoroutine != null)
+            StopCoroutine(showHintCoroutine);
+
+        showHintCoroutine = null;
+        playerThoughtBubble.SetActive(false);
+
     }
     IEnumerator TypeHintCoroutine(string hint)
     {
         playerThoughtText.text = string.Empty;
-        playerThoughtBubble.SetActive(true);
+        
 
         WaitForSeconds timePerCharacter = new WaitForSeconds(Constants.TextTypingInterval / hint.Length);
 
