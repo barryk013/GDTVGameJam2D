@@ -10,13 +10,13 @@ public class PlayerSprite : MonoBehaviour
     private void OnValidate()
     {
         if (playerSpriteRenderer != null)
-            playerSpriteRenderer.sortingOrder = (int)transform.position.y * -100;
+            playerSpriteRenderer.sortingOrder = (int)(playerSpriteRenderer.transform.position.y * -100);
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerSpriteRenderer.sortingOrder = (int)(transform.position.y * -100);
+        playerSpriteRenderer.sortingOrder = (int)(playerSpriteRenderer.transform.position.y * -100);
 
         SetSpriteLookDirection();
     }
