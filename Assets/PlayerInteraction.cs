@@ -46,7 +46,7 @@ public class PlayerInteraction : MonoBehaviour
         interactableObjects.Add(interactableObject);
 
         if (interactionCoroutine == null)
-            interactionCoroutine = StartCoroutine(SelectClosestInteractableObject());
+            interactionCoroutine = StartCoroutine(InteractionCoroutine());
     }
     private void OnTriggerExit2D(Collider2D other)
     {
@@ -80,10 +80,9 @@ public class PlayerInteraction : MonoBehaviour
 
         selectedObject.StartInteraction();
 
-        if (selectedObject is Grave)
-        {
-            ((Grave)selectedObject).Story.StoryCompleted += OnStoryCompleted;
-        }
+        if (selectedObject is Grave)        
+            (selectedObject as Grave).Story.StoryCompleted += OnStoryCompleted;
+        
     }
     private void OnInteractionCanceled()
     {
@@ -92,10 +91,9 @@ public class PlayerInteraction : MonoBehaviour
 
         selectedObject.StopInteraction();
 
-        if (selectedObject is Grave)
-        {
-            ((Grave)selectedObject).Story.StoryCompleted -= OnStoryCompleted;
-        }
+        if (selectedObject is Grave)        
+            (selectedObject as Grave).Story.StoryCompleted -= OnStoryCompleted;
+        
     }
     private void OnItemPickUpPerformed()
     {
@@ -119,41 +117,52 @@ public class PlayerInteraction : MonoBehaviour
     #endregion
 
 
-    IEnumerator SelectClosestInteractableObject()
+    #region Interaction 
+    IEnumerator InteractionCoroutine()
     {
         while (true)
         {
-            float minSqrDist = float.MaxValue;
-            IInteractable closestObj = null;
+            IInteractable closestObj = FindClosestObject();
 
-            foreach (IInteractable obj in interactableObjects)
-            {
-                float distToObj = Vector2.SqrMagnitude(obj.Transform.position - transform.position);
-                if (distToObj < minSqrDist)
-                {
-                    closestObj = obj;
-                    minSqrDist = distToObj;
-                }
-            }
-
-            //update selected object
-            if (closestObj != selectedObject)
-            {
-                //deselect old object
-                if (selectedObject != null)
-                {
-                    selectedObject.Deselect();
-                    selectedObject.StopInteraction();
-                }
-
-
-                if (closestObj != null)
-                    closestObj.Select();
-
-                selectedObject = closestObj;
-            }
+            if (closestObj != selectedObject)            
+                SelectNewObject(closestObj);            
 
             yield return null;
         }
     }
+
+    private IInteractable FindClosestObject()
+    {
+        float minSqrDist = float.MaxValue;
+        IInteractable closestObj = null;
+
+        foreach (IInteractable obj in interactableObjects)
+        {
+            float sqrDistToObj = Vector2.SqrMagnitude(obj.Transform.position - transform.position);
+            if (sqrDistToObj < minSqrDist)
+            {
+                closestObj = obj;
+                minSqrDist = sqrDistToObj;
+            }
+        }
+
+        return closestObj;
+    }
+
+    private void SelectNewObject(IInteractable closestObj)
+    {
+        //deselect old object
+        if (selectedObject != null)
+        {
+            selectedObject.Deselect();
+            selectedObject.StopInteraction();
+        }
+
+
+        if (closestObj != null)
+            closestObj.Select();
+
+        selectedObject = closestObj;
+    }
+    #endregion
 }
