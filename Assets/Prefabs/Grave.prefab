@@ -1295,7 +1295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8476310553079550418}
   - component: {fileID: 2091851322588450470}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: GraveSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

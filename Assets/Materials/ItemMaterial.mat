@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FoliageWindMaterial
-  m_Shader: {fileID: 4800000, guid: b297abbe0fe1d8e4f87e4af5fe7293f4, type: 3}
+  m_Name: ItemMaterial
+  m_Shader: {fileID: 4800000, guid: 2cfa1e3ca9a894a439d8c95681f58133, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -46,18 +46,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _Alpha: 1
+    - _Alpha1: 1
     - _AlphaCutoff: 0.5
-    - _Blend: 0.354
-    - _BorderThickness: 0
-    - _CellDensity: 4.14
-    - _PixelationAmount: 100
-    - _QueueControl: 0
-    - _QueueOffset: 0
-    - _Speed: 1
-    - _WindIntensity: 0.1
-    - _WindSpeed: 0.3
+    - _BorderThickness: 0.04
+    - _PixelationAmount: 31.7
     m_Colors:
-    - _BorderColour: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0, g: 0.7169812, b: 0.01151668, a: 0}
+    - _BorderColour: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color1: {r: 1, g: 1, b: 1, a: 0}
+    - _Colour: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

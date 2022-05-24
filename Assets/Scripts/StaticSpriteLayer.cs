@@ -5,7 +5,7 @@ using UnityEngine;
 public class StaticSpriteLayer : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
-    private void Awake()
+    private void OnEnable()
     {
         spriteRenderer.sortingOrder = (int)(spriteRenderer.transform.position.y * -100);
     }
