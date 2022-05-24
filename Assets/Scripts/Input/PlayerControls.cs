@@ -37,27 +37,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Pick Up"",
-                    ""type"": ""Button"",
-                    ""id"": ""e089868c-caff-44e9-8722-f8e04ec0f3f2"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""d7a9eda8-7eb7-4515-a817-5c94436256e7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Cancel"",
-                    ""type"": ""Button"",
-                    ""id"": ""139f3b69-bc74-4766-a2f6-f7b789b5ffcf"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -122,34 +104,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0c7122e3-c193-469b-b3d5-99be7f996c9d"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pick Up"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""977c1954-904c-45ee-9f66-03fa714c789b"",
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""eb5381c3-820c-405c-98c0-3a56061a5010"",
-                    ""path"": ""*/{Cancel}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -670,6 +630,34 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Cancel"",
+            ""id"": ""48aebf7a-0b4c-420f-afaa-349eb53b999f"",
+            ""actions"": [
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""61e6e2a4-4ab0-4708-bc80-872684983db2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""fa88ed7a-84df-4666-ad5a-8ad943a63b3e"",
+                    ""path"": ""*/{Cancel}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -677,9 +665,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // MainControls
         m_MainControls = asset.FindActionMap("MainControls", throwIfNotFound: true);
         m_MainControls_Move = m_MainControls.FindAction("Move", throwIfNotFound: true);
-        m_MainControls_PickUp = m_MainControls.FindAction("Pick Up", throwIfNotFound: true);
         m_MainControls_Interact = m_MainControls.FindAction("Interact", throwIfNotFound: true);
-        m_MainControls_Cancel = m_MainControls.FindAction("Cancel", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -692,6 +678,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // Cancel
+        m_Cancel = asset.FindActionMap("Cancel", throwIfNotFound: true);
+        m_Cancel_Cancel = m_Cancel.FindAction("Cancel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -752,17 +741,13 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_MainControls;
     private IMainControlsActions m_MainControlsActionsCallbackInterface;
     private readonly InputAction m_MainControls_Move;
-    private readonly InputAction m_MainControls_PickUp;
     private readonly InputAction m_MainControls_Interact;
-    private readonly InputAction m_MainControls_Cancel;
     public struct MainControlsActions
     {
         private @PlayerControls m_Wrapper;
         public MainControlsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_MainControls_Move;
-        public InputAction @PickUp => m_Wrapper.m_MainControls_PickUp;
         public InputAction @Interact => m_Wrapper.m_MainControls_Interact;
-        public InputAction @Cancel => m_Wrapper.m_MainControls_Cancel;
         public InputActionMap Get() { return m_Wrapper.m_MainControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -775,15 +760,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnMove;
-                @PickUp.started -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnPickUp;
-                @PickUp.performed -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnPickUp;
-                @PickUp.canceled -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnPickUp;
                 @Interact.started -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnInteract;
-                @Cancel.started -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnCancel;
-                @Cancel.performed -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnCancel;
-                @Cancel.canceled -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnCancel;
             }
             m_Wrapper.m_MainControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -791,15 +770,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @PickUp.started += instance.OnPickUp;
-                @PickUp.performed += instance.OnPickUp;
-                @PickUp.canceled += instance.OnPickUp;
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
-                @Cancel.started += instance.OnCancel;
-                @Cancel.performed += instance.OnCancel;
-                @Cancel.canceled += instance.OnCancel;
             }
         }
     }
@@ -909,12 +882,43 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Cancel
+    private readonly InputActionMap m_Cancel;
+    private ICancelActions m_CancelActionsCallbackInterface;
+    private readonly InputAction m_Cancel_Cancel;
+    public struct CancelActions
+    {
+        private @PlayerControls m_Wrapper;
+        public CancelActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Cancel => m_Wrapper.m_Cancel_Cancel;
+        public InputActionMap Get() { return m_Wrapper.m_Cancel; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CancelActions set) { return set.Get(); }
+        public void SetCallbacks(ICancelActions instance)
+        {
+            if (m_Wrapper.m_CancelActionsCallbackInterface != null)
+            {
+                @Cancel.started -= m_Wrapper.m_CancelActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_CancelActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_CancelActionsCallbackInterface.OnCancel;
+            }
+            m_Wrapper.m_CancelActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
+            }
+        }
+    }
+    public CancelActions @Cancel => new CancelActions(this);
     public interface IMainControlsActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnPickUp(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnCancel(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -928,5 +932,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    public interface ICancelActions
+    {
+        void OnCancel(InputAction.CallbackContext context);
     }
 }

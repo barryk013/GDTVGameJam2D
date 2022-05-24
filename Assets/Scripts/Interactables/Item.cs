@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,11 @@ public class Item : MonoBehaviour, IInteractable
     public GameObject itemDescription;
 
     [SerializeField] private GameObject intereactionButton;
-    [SerializeField] private Transform cameraFocusPoint;
+    [SerializeField] private UIPanel contextMenu;
+
+    private Inventory playerInventory;
+
+    public event Action InteractionFinished;
 
     public Transform Transform => transform;
 
@@ -19,16 +24,21 @@ public class Item : MonoBehaviour, IInteractable
         intereactionButton.SetActive(false);
     }
 
-    public void StartInteraction()
+    public void StartInteraction(Inventory playerInventory)
     {
-        CameraController.Instance.ZoomIn(cameraFocusPoint);
-        itemDescription.SetActive(true);
+        this.playerInventory = playerInventory;
+        CameraController.Instance.ZoomIn(transform);
+        //itemDescription.SetActive(true);
+        contextMenu.SetActive(true);
     }
 
     public void StopInteraction()
     {
+        this.playerInventory = null;
         CameraController.Instance.ZoomOut();
         itemDescription.SetActive(false);
+        itemName.SetActive(false);
+        contextMenu.SetActive(false);
     }
 
     public void Select()
@@ -39,17 +49,18 @@ public class Item : MonoBehaviour, IInteractable
 
     public void Deselect()
     {
-        intereactionButton.SetActive(false);
-        itemName.SetActive(false);
+        intereactionButton.SetActive(false);        
     }
-
+    public void Inspect()
+    {
+        itemDescription.SetActive(true);
+    }
     public void PickUpItem()
     {
-        gameObject.SetActive(false);
-    }
-    public void DropItem(Vector2 dropLocation)
-    {
-        transform.position = dropLocation;
-        gameObject.SetActive(true);
-    }
+        if (playerInventory == null)
+            return;
+        playerInventory.PickUp(this);
+
+        InteractionFinished?.Invoke();
+    }    
 }

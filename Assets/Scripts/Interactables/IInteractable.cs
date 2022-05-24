@@ -8,7 +8,8 @@ using UnityEngine;
 public interface IInteractable
 {
     public Transform Transform { get; }
-    public void StartInteraction();
+    public event Action InteractionFinished;
+    public void StartInteraction(Inventory inventory);
     public void StopInteraction();
     public void Select();
     public void Deselect();

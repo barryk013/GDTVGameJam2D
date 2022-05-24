@@ -25,19 +25,31 @@ public class InputManager : MonoBehaviour
         inputScriptableObject.SetInputManager(this);
 
         Input.MainControls.Interact.performed += inputScriptableObject.OnInteractionPerformed;
-        Input.MainControls.Cancel.performed += inputScriptableObject.OnInteractionCanceled;
-        Input.MainControls.PickUp.performed += inputScriptableObject.OnPickUpActionPerformed;
+        Input.Cancel.Cancel.performed += inputScriptableObject.OnInteractionCanceled;
+
+        SwitchToNormalControls();
+
     }
     private void OnDisable()
     {
         inputScriptableObject.ResetInput();        
         Input.MainControls.Interact.performed -= inputScriptableObject.OnInteractionPerformed;
-        Input.MainControls.Cancel.performed -= inputScriptableObject.OnInteractionCanceled;
-        Input.MainControls.PickUp.performed -= inputScriptableObject.OnPickUpActionPerformed;
+        Input.Cancel.Cancel.performed -= inputScriptableObject.OnInteractionCanceled;
     }
 
     public Vector2 ReadMovementVector()
     {
         return Input.MainControls.Move.ReadValue<Vector2>();
+    }
+
+    public void SwitchToUIControls()
+    {
+        print("Switch to UI controls");
+        Input.MainControls.Disable();        
+    }
+    public void SwitchToNormalControls()
+    {
+        print("Switch to Normal controls");
+        Input.MainControls.Enable();        
     }
 }

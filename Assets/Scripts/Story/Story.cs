@@ -6,10 +6,15 @@ using System;
 
 public class Story : MonoBehaviour
 {
-    [SerializeField] private GameObject textBubble;
-    [SerializeField] private TextMeshProUGUI storyText;
-    [SerializeField] private List<TextScriptableObject> paragraphs = new List<TextScriptableObject>();
+    [SerializeField] private UIPanel textBoxPanel;
+    [SerializeField] private TextMeshProUGUI textBox;
+    [SerializeField] private List<TextScriptableObject> storyParagraphs = new List<TextScriptableObject>();
     [SerializeField] private TextScriptableObject hint;
+    [Tooltip("Text to show when player hands in wrong item")]
+    [SerializeField] private TextScriptableObject wrongItemText;
+    [SerializeField] private List<TextScriptableObject> questCompletedParagraphs = new List<TextScriptableObject>();
+
+    private List<TextScriptableObject> currentScript;
 
     [SerializeField] private float textTypingInterval = 2;
 
@@ -17,19 +22,39 @@ public class Story : MonoBehaviour
 
     private bool storyInProgress = false;
 
-    public event Action<string> StoryCompleted;
+    public event Action<string> ShowQuestHint;
+    public event Action InteractionCompleted;
+    private Grave grave;
 
     private void Awake()
     {
-        textBubble.SetActive(false);
+        textBoxPanel.SetActive(false);
+        grave = GetComponent<Grave>();
     }
 
-    public void StartStory()
+    public void ShowStory()
     {
-        if(storyInProgress) return;
+        if (storyInProgress) return;
+        currentScript = storyParagraphs;
+        StartStory(storyParagraphs);
+    }
+    public void ShowWrongItemStory()
+    {
+        if (storyInProgress) return;
+        StartStory(new() { wrongItemText });
+    }
+    public void ShowQuestCompletedStory()
+    {
+        if (storyInProgress) return;
+        
+        StartStory(questCompletedParagraphs);
+    }
 
+    private void StartStory(List<TextScriptableObject> story)
+    {
+        currentScript = story;
         storyInProgress = true;
-        textBubble.SetActive(true);
+        textBoxPanel.SetActive(true);
 
         currentParagraphIndex = 0;
         StartCoroutine(TypeStoryCoroutine());
@@ -37,20 +62,26 @@ public class Story : MonoBehaviour
 
     public void EndStory()
     {
-        textBubble.SetActive(false);
-        storyText.text = string.Empty;
+        textBoxPanel.SetActive(false);
+        textBox.text = string.Empty;
         storyInProgress = false;
 
         StopAllCoroutines();
         currentParagraphIndex = 0;
+
+        
     }
 
     public void NextPage()
     {
-        if (currentParagraphIndex == paragraphs.Count - 1)
+        if (!storyInProgress) return;
+
+        if (currentParagraphIndex == currentScript.Count - 1)
         {
-            StoryCompleted?.Invoke(hint.Text);
-            EndStory();
+            if (currentScript == storyParagraphs)            
+                ShowQuestHint?.Invoke(hint.Text);
+
+            grave.InteractionCompleted();            
             return;
         }
 
@@ -60,12 +91,14 @@ public class Story : MonoBehaviour
     }
     public void PreviousPage()
     {
+        if(!storyInProgress) return;
+
         if (currentParagraphIndex == 0)
             return;
         
         StopAllCoroutines();
         currentParagraphIndex--;
-        storyText.text = paragraphs[currentParagraphIndex].Text;
+        textBox.text = currentScript[currentParagraphIndex].Text;
     }
 
     public string GetHint()
@@ -73,10 +106,15 @@ public class Story : MonoBehaviour
         return hint.Text;
     }
 
+    
+
     IEnumerator TypeStoryCoroutine()
     {
-        storyText.text = string.Empty;
-        string textToWrite = paragraphs[currentParagraphIndex].Text;
+        if(currentScript == null || currentScript.Count == 0)
+            yield break;
+
+        textBox.text = string.Empty;
+        string textToWrite = currentScript[currentParagraphIndex].Text;
 
         WaitForSeconds timePerCharacter = new WaitForSeconds(textTypingInterval / textToWrite.Length);
         
@@ -87,7 +125,7 @@ public class Story : MonoBehaviour
             string visibleText = textToWrite.Substring(0, currentCharIndex);
             string invisibleText = $"<color=#00000000>{textToWrite.Substring(currentCharIndex)}</color>";
 
-            storyText.text = visibleText + invisibleText;
+            textBox.text = visibleText + invisibleText;
 
             currentCharIndex++;
             yield return timePerCharacter;

@@ -11,7 +11,7 @@ public class PlayerInteraction : MonoBehaviour
     private IInteractable selectedObject;
     private Coroutine interactionCoroutine;
 
-    private Item itemInHand;
+    private Inventory inventory = new Inventory();
 
     private Player player;
 
@@ -25,13 +25,11 @@ public class PlayerInteraction : MonoBehaviour
     {
         input.InteractionPerformed += OnInteractionPerformed;
         input.InteractionCanceled += OnInteractionCanceled;
-        input.PickUpActionPerformed += OnItemPickUpPerformed;
     }
     private void OnDisable()
     {
         input.InteractionPerformed -= OnInteractionPerformed;
         input.InteractionCanceled -= OnInteractionCanceled;
-        input.PickUpActionPerformed -= OnItemPickUpPerformed;
     }
 
 
@@ -55,19 +53,21 @@ public class PlayerInteraction : MonoBehaviour
         if (interactableObject == null)
             return;
 
-
         interactableObjects.Remove(interactableObject);
 
         if (interactableObjects.Count == 0)
         {
-            StopCoroutine(interactionCoroutine);
-            interactionCoroutine = null;
+            if(interactionCoroutine != null)
+            {
+                StopCoroutine(interactionCoroutine);
+                interactionCoroutine = null;
+            }
 
             if (selectedObject != null)
             {
                 selectedObject.Deselect();
                 selectedObject.StopInteraction();
-                selectedObject = null;
+                //selectedObject = null;
             }
         }
     }
@@ -78,50 +78,66 @@ public class PlayerInteraction : MonoBehaviour
         if (selectedObject == null)
             return;
 
-        selectedObject.StartInteraction();
+        player.HideHint();
+        selectedObject.StartInteraction(inventory);
 
-        if (selectedObject is Grave)        
-            (selectedObject as Grave).Story.StoryCompleted += OnStoryCompleted;
-        
+        selectedObject.InteractionFinished += OnInteractionCanceled;
+
+        if (selectedObject is Grave)
+        {
+            Grave grave = (Grave)selectedObject;
+            grave.Story.ShowQuestHint += OnShowHint;
+        }
+
+        if (interactionCoroutine != null)
+        {
+            StopCoroutine(interactionCoroutine);
+            interactionCoroutine = null;
+        }
+        if (selectedObject != null)
+        {
+            selectedObject.Deselect();            
+        }
+            
+        input.SwitchToUIControls();
     }
     private void OnInteractionCanceled()
     {
+        
         if (selectedObject == null)
             return;
 
+        selectedObject.InteractionFinished -= OnInteractionCanceled;
+
         selectedObject.StopInteraction();
 
-        if (selectedObject is Grave)        
-            (selectedObject as Grave).Story.StoryCompleted -= OnStoryCompleted;
-        
+        if (selectedObject is Grave)
+        {
+            Grave grave = (Grave)selectedObject;
+            grave.Story.ShowQuestHint -= OnShowHint;
+        }
+
+        if (interactionCoroutine == null)
+            interactionCoroutine = StartCoroutine(InteractionCoroutine());
+
+        input.SwitchToNormalControls();
     }
-    private void OnItemPickUpPerformed()
+    private void OnShowHint(string hint)
     {
-        if (selectedObject is not Item || selectedObject == null)
-            return;
-
-        if (itemInHand != null)
-            itemInHand.DropItem(selectedObject.Transform.position);
-
-
-        itemInHand = (Item)selectedObject;
-        itemInHand.PickUpItem();
-        interactableObjects.Remove(selectedObject);
-
-    }
-    private void OnStoryCompleted(string hint)
-    {
-        player.ShowHint(hint);
-        OnInteractionCanceled();
-    }
+        player.ShowHint(hint);        
+    }    
     #endregion
 
 
     #region Interaction 
     IEnumerator InteractionCoroutine()
     {
+        selectedObject = null;
         while (true)
         {
+            if(interactableObjects == null || interactableObjects.Count == 0)
+                yield break;
+
             IInteractable closestObj = FindClosestObject();
 
             if (closestObj != selectedObject)            
