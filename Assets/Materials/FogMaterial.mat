@@ -61,7 +61,7 @@ Material:
     - _DistortionSpeed: 0.15
     - _FogAlpha: 1
     - _FogOpacity: 0.727
-    - _FogPower: 1.22
+    - _FogPower: 0.9
     - _FogScale: 2
     - _FogScale1: 0.12
     - _FogScale2: 4.61
@@ -72,6 +72,6 @@ Material:
     - _DistortionDirection: {r: 0.2, g: 0.5, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FogColor: {r: 1, g: 1, b: 1, a: 1}
-    - _FogColour: {r: 0.56037736, g: 0.7746844, b: 1, a: 1}
+    - _FogColour: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 1}
     - _FogDirection: {r: -0.5, g: -0.35, b: 0, a: 0}
   m_BuildTextureStacks: []
