@@ -201,7 +201,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6515969083803728238}
-  - component: {fileID: 1913958581488562572}
   - component: {fileID: 1757675347}
   - component: {fileID: 1757675346}
   - component: {fileID: 7781966806023679307}
@@ -230,22 +229,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1913958581488562572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2927261857302569982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db903a2a261604c4784deb94976dfb99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 2323dd59e64d18f4484ea078998c60c0, type: 2}
-  nameText: {fileID: 7786788856852580422}
-  descriptionText: {fileID: 8824648507590679522}
-  itemImage: {fileID: 0}
 --- !u!58 &1757675347
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -274,10 +257,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eb72feddede1ef4dbcdc7fd0368ec76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: {fileID: 8391367260056641532}
-  itemDescription: {fileID: 7177867701083859557}
+  itemPreset: {fileID: 11400000, guid: 2323dd59e64d18f4484ea078998c60c0, type: 2}
+  itemNameText: {fileID: 7786788856852580422}
+  itemDescriptionGO: {fileID: 7177867701083859557}
+  itemDescriptionText: {fileID: 8824648507590679522}
+  itemSpriteRenderer: {fileID: 535928159975175277}
   intereactionButton: {fileID: 3528610946108535053}
-  contextMenu: {fileID: 0}
 --- !u!114 &7781966806023679307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,7 +560,7 @@ GameObject:
   - component: {fileID: 1095145641163136659}
   - component: {fileID: 535928159975175277}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: ItemSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

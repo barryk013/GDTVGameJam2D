@@ -658,7 +658,18 @@
                 {
                     "name": "",
                     "id": "fa88ed7a-84df-4666-ad5a-8ad943a63b3e",
-                    "path": "*/{Cancel}",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "05640f35-35c7-438a-a657-e3fb35ee5518",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

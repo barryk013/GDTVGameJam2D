@@ -57,8 +57,7 @@ public class Player : MonoBehaviour
             yield return timePerCharacter;
         }
 
-        //todo make 5 a variable
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(Constants.HintDisplayTime);
 
         playerThoughtBubble.SetActive(false);
     }

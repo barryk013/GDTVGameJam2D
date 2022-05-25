@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c74bc52855ed24468e5c690f74288cd, type: 3}
-  m_Name: Stick
+  m_Name: Item1
   m_EditorClassIdentifier: 
-  itemName: Stick
-  description: Description for stick
-  image: {fileID: 0}
+  Name: Item1
+  Description: Item1 description.
+  ItemSprite: {fileID: 21300000, guid: 9eb0f2e5a0624c8499cbc9401b03415b, type: 3}

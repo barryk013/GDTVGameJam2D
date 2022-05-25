@@ -18,8 +18,9 @@ public class Inventory
         Item.ItemDropped(dropLocation);
     }
 
-    public void HandInItem()
+    public void HandInItem(Grave graveQuestGiver)
     {
+        graveQuestGiver.HandInItem(Item);
         Item = null;
     }
 }

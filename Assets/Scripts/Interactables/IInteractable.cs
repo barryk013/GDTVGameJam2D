@@ -7,7 +7,8 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    public Transform Transform { get; }
+    public Vector3 Position { get; }
+    public event Action InteractionStarted;
     public event Action InteractionEnded;
     public void StartInteraction(UIManager playerUI);
     public void StopInteraction();

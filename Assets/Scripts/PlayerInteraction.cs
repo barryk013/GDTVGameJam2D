@@ -14,11 +14,11 @@ public class PlayerInteraction : MonoBehaviour
     private Inventory inventory = new Inventory();
 
     private Player player;
-    private UIManager playerUI;
+    private UIManager uiManager;
 
     private void Awake()
     {
-        playerUI = GetComponent<UIManager>();
+        uiManager = GetComponent<UIManager>();
         player = GetComponent<Player>();
     }
 
@@ -69,7 +69,7 @@ public class PlayerInteraction : MonoBehaviour
             {
                 selectedObject.Deselect();
                 selectedObject.StopInteraction();
-                //selectedObject = null;
+                selectedObject.InteractionStarted -= OnInteractionPerformed;
             }
         }
     }
@@ -81,7 +81,7 @@ public class PlayerInteraction : MonoBehaviour
             return;
 
         player.HideHint();
-        selectedObject.StartInteraction(playerUI);
+        selectedObject.StartInteraction(uiManager);
 
         selectedObject.InteractionEnded += OnInteractionCanceled;
 
@@ -120,7 +120,7 @@ public class PlayerInteraction : MonoBehaviour
         if (interactionCoroutine == null)
             interactionCoroutine = StartCoroutine(InteractionCoroutine());
 
-        playerUI.CloseContextMenu();
+        uiManager.CloseContextMenu();
         input.EnableControls(true);
     }
     private void OnShowHint(string hint)
@@ -141,8 +141,16 @@ public class PlayerInteraction : MonoBehaviour
 
             IInteractable closestObj = FindClosestObject();
 
-            if (closestObj != selectedObject)            
-                SelectNewObject(closestObj);            
+            if (closestObj != selectedObject)
+            {
+                if (selectedObject != null)
+                    selectedObject.InteractionStarted -= OnInteractionPerformed;
+                
+                if(closestObj != null)
+                    closestObj.InteractionStarted += OnInteractionPerformed;
+            }
+                
+            SelectNewObject(closestObj);            
 
             yield return null;
         }
@@ -155,7 +163,7 @@ public class PlayerInteraction : MonoBehaviour
 
         foreach (IInteractable obj in interactableObjects)
         {
-            float sqrDistToObj = Vector2.SqrMagnitude(obj.Transform.position - transform.position);
+            float sqrDistToObj = Vector2.SqrMagnitude(obj.Position - transform.position);
             if (sqrDistToObj < minSqrDist)
             {
                 closestObj = obj;
@@ -197,8 +205,8 @@ public class PlayerInteraction : MonoBehaviour
         (selectedObject as Grave).Interact();
     }
     public void OnGraveQuestHandIn()
-    {
-        (selectedObject as Grave).HandInItem(inventory.Item);
+    {        
+        inventory.HandInItem(selectedObject as Grave);
     }
 
     #endregion

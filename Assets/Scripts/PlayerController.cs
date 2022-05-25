@@ -7,16 +7,14 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private InputScriptableObject input;
     [SerializeField] private float movementSpeed = 5f;
-    private Rigidbody2D rb;
-
-
+    private Rigidbody2D _rigidBody;
 
     private void Awake()
     {
     }
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        _rigidBody = GetComponent<Rigidbody2D>();
     }
     private void OnEnable()
     {
@@ -35,6 +33,6 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        rb.velocity = input.MovementVector * movementSpeed * Time.fixedDeltaTime;
+        _rigidBody.velocity = movementSpeed * Time.fixedDeltaTime * input.MovementVector;
     }
 }

@@ -2,52 +2,67 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.EventSystems;
 
-public class Item : MonoBehaviour, IInteractable
+public class Item : MonoBehaviour, IInteractable, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    public GameObject itemName;
-    public GameObject itemDescription;
+    [SerializeField] private ItemScriptableObject itemPreset;
 
-    [SerializeField] private GameObject intereactionButton;
-    [SerializeField] private UIPanel contextMenu;
+    //[SerializeField] private GameObject itemNameGO;
+    [SerializeField] private TextMeshProUGUI itemNameText;
 
+    [SerializeField] private GameObject itemDescriptionGO;
+    [SerializeField] private TextMeshProUGUI itemDescriptionText;
+
+    [SerializeField] private SpriteRenderer itemSpriteRenderer;
+
+    public event Action InteractionStarted;
     public event Action InteractionEnded;
 
-    public Transform Transform => transform;
+    public Vector3 Position => transform.position;
 
     private void Awake()
     {
-        itemName.SetActive(false);
-        itemDescription.SetActive(false);
-        intereactionButton.SetActive(false);
+        itemNameText.gameObject.SetActive(false);
+        itemDescriptionGO.SetActive(false);
+
+        itemNameText.text = itemPreset.Name;
+        itemDescriptionText.text = itemPreset.Description;
+        itemSpriteRenderer.sprite = itemPreset.ItemSprite;        
+    }
+
+    private void OnValidate()
+    {
+        itemSpriteRenderer.sprite = itemPreset.ItemSprite;
     }
 
     public void StartInteraction(UIManager playerUI)
     {
         CameraController.Instance.ZoomIn(transform);
+        itemNameText.gameObject.SetActive(true);
         playerUI.ShowItemContextMenu();
     }
 
     public void StopInteraction()
     {
         CameraController.Instance.ZoomOut();
-        itemDescription.SetActive(false);
-        itemName.SetActive(false);
+        itemDescriptionGO.SetActive(false);
+        itemNameText.gameObject.SetActive(false);
     }
 
     public void Select()
     {
-        intereactionButton.SetActive(true);
-        itemName.SetActive(true);
+        itemSpriteRenderer.material.SetFloat("_ToggleBorder", 1);
     }
 
     public void Deselect()
     {
-        intereactionButton.SetActive(false);        
+        itemSpriteRenderer.material.SetFloat("_ToggleBorder", 0);
     }
     public void Inspect()
     {
-        itemDescription.SetActive(true);
+        itemDescriptionGO.SetActive(true);
     }
     public void ItemPickedUp()
     {
@@ -67,5 +82,21 @@ public class Item : MonoBehaviour, IInteractable
     public void DisableInteraction()
     {
         Destroy(this);
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        InteractionStarted?.Invoke();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        //TODO show a different border colour for hover and selected.
+        Select();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Deselect();
     }
 }

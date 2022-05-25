@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="Story Text")]
 public class TextScriptableObject : ScriptableObject
 {
-    [Multiline(40)]
+    [TextArea(20,40)]
     public string Text;
     
 }

@@ -3,22 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
-public class Grave : MonoBehaviour, IInteractable
+public class Grave : MonoBehaviour, IInteractable, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
-
-    [SerializeField] private GameObject interactionPrompt;
     [SerializeField] private Item questItem;
     [SerializeField] private Transform questItemLocation;
 
+    [SerializeField] private SpriteRenderer graveSpriteRenderer;
+
     public Story Story { get; private set; }
 
+    public event Action InteractionStarted;
     public event Action InteractionEnded;
-    public Transform Transform => transform;
+
+    public Vector3 Position => transform.position;
 
     void Awake()
     {
-        interactionPrompt.SetActive(false);
         Story = GetComponent<Story>();
     }
     public void StartInteraction(UIManager playerUI)
@@ -33,12 +35,12 @@ public class Grave : MonoBehaviour, IInteractable
     }
     public void Select()
     {
-        interactionPrompt.SetActive(true);
+        graveSpriteRenderer.material.SetFloat("_ToggleBorder", 1);
     }
 
     public void Deselect()
     {
-        interactionPrompt.SetActive(false);
+        graveSpriteRenderer.material.SetFloat("_ToggleBorder", 0);
     }
 
     public void Interact()
@@ -64,5 +66,21 @@ public class Grave : MonoBehaviour, IInteractable
     public void StoryCompleted()
     {
         InteractionEnded?.Invoke();
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        InteractionStarted?.Invoke();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        //TODO show a different border colour for hover and selected.
+        Select();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Deselect();
     }
 }
