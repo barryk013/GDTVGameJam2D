@@ -42,6 +42,9 @@ public class InputScriptableObject : ScriptableObject
 
     public void EnableControls(bool enabled)
     {
+        if (inputManager == null)
+            return;
+
         inputManager.EnableControls(enabled);
     }
 

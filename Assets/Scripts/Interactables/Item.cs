@@ -59,6 +59,10 @@ public class Item : MonoBehaviour, IInteractable
         transform.position = dropLocation;
         gameObject.SetActive(true);
     }
+    public void CloseDescriptionBox()
+    {
+        InteractionEnded?.Invoke();
+    }
 
     public void DisableInteraction()
     {

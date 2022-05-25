@@ -14,7 +14,7 @@ public class InputManager : MonoBehaviour
             if (input == null)
             {
                 input = new PlayerControls();
-                input.Enable();
+                input.Enable();                
             }
             return input;
         }
@@ -27,9 +27,6 @@ public class InputManager : MonoBehaviour
         Input.MainControls.Interact.performed += inputScriptableObject.OnInteractionPerformed;
         Input.AlwaysOn.Cancel.performed += inputScriptableObject.OnInteractionCanceled;
         Input.AlwaysOn.Menu.performed += inputScriptableObject.OnStartMenuOpened;
-
-        EnableControls(true);
-
     }
     private void OnDisable()
     {
