@@ -8,7 +8,9 @@ public class UIPanel : MonoBehaviour
     public Selectable DefaultSelection;
     public void SetActive(bool active)
     {
-        if (DefaultSelection != null) { DefaultSelection.Select(); }
+        if (DefaultSelection != null && active)  
+            DefaultSelection.Select(); 
+
         gameObject.SetActive(active);
     }
 }

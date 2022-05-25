@@ -11,11 +11,15 @@ public class Inventory
             DropItem(newItem.transform.position);
 
         this.Item = newItem;
-        Item.gameObject.SetActive(false);
+        this.Item.ItemPickedUp();
     }
     private void DropItem(Vector3 dropLocation)
     {
-        Item.transform.position = dropLocation;
-        Item.gameObject.SetActive(true);
+        Item.ItemDropped(dropLocation);
+    }
+
+    public void HandInItem()
+    {
+        Item = null;
     }
 }

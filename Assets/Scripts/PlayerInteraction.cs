@@ -14,9 +14,11 @@ public class PlayerInteraction : MonoBehaviour
     private Inventory inventory = new Inventory();
 
     private Player player;
+    private UIManager playerUI;
 
     private void Awake()
     {
+        playerUI = GetComponent<UIManager>();
         player = GetComponent<Player>();
     }
 
@@ -79,14 +81,13 @@ public class PlayerInteraction : MonoBehaviour
             return;
 
         player.HideHint();
-        selectedObject.StartInteraction(inventory);
+        selectedObject.StartInteraction(playerUI);
 
-        selectedObject.InteractionFinished += OnInteractionCanceled;
+        selectedObject.InteractionEnded += OnInteractionCanceled;
 
         if (selectedObject is Grave)
         {
-            Grave grave = (Grave)selectedObject;
-            grave.Story.ShowQuestHint += OnShowHint;
+            (selectedObject as Grave).Story.ShowQuestHint += OnShowHint;
         }
 
         if (interactionCoroutine != null)
@@ -98,29 +99,29 @@ public class PlayerInteraction : MonoBehaviour
         {
             selectedObject.Deselect();            
         }
-            
-        input.SwitchToUIControls();
+
+        input.EnableControls(false);
     }
-    private void OnInteractionCanceled()
+    public void OnInteractionCanceled()
     {
         
         if (selectedObject == null)
             return;
 
-        selectedObject.InteractionFinished -= OnInteractionCanceled;
+        selectedObject.InteractionEnded -= OnInteractionCanceled;
 
         selectedObject.StopInteraction();
 
         if (selectedObject is Grave)
-        {
-            Grave grave = (Grave)selectedObject;
-            grave.Story.ShowQuestHint -= OnShowHint;
+        {            
+            (selectedObject as Grave).Story.ShowQuestHint -= OnShowHint;
         }
 
         if (interactionCoroutine == null)
             interactionCoroutine = StartCoroutine(InteractionCoroutine());
 
-        input.SwitchToNormalControls();
+        playerUI.CloseContextMenu();
+        input.EnableControls(true);
     }
     private void OnShowHint(string hint)
     {
@@ -129,7 +130,7 @@ public class PlayerInteraction : MonoBehaviour
     #endregion
 
 
-    #region Interaction 
+    #region Selecting interactable object
     IEnumerator InteractionCoroutine()
     {
         selectedObject = null;
@@ -180,5 +181,25 @@ public class PlayerInteraction : MonoBehaviour
 
         selectedObject = closestObj;
     }
+    #endregion
+
+    #region UI Interaction button event listeners
+    public void OnItemInspect()
+    {
+        (selectedObject as Item).Inspect();
+    }
+    public void OnItemPickUp()
+    {
+        inventory.PickUp(selectedObject as Item);        
+    }
+    public void OnGraveInteraction()
+    {
+        (selectedObject as Grave).Interact();
+    }
+    public void OnGraveQuestHandIn()
+    {
+        (selectedObject as Grave).HandInItem(inventory.Item);
+    }
+
     #endregion
 }

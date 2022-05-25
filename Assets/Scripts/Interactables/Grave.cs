@@ -9,43 +9,28 @@ public class Grave : MonoBehaviour, IInteractable
 
     [SerializeField] private GameObject interactionPrompt;
     [SerializeField] private Item questItem;
-
-    [SerializeField] private UIPanel contextMenu;
+    [SerializeField] private Transform questItemLocation;
 
     public Story Story { get; private set; }
 
-    private Item itemInPlayerHand;
-
-    public event Action InteractionFinished;
-
+    public event Action InteractionEnded;
     public Transform Transform => transform;
 
     void Awake()
     {
         interactionPrompt.SetActive(false);
-        contextMenu.SetActive(false);
         Story = GetComponent<Story>();
     }
-
-    public void StartInteraction(Inventory playerInventory)
+    public void StartInteraction(UIManager playerUI)
     {
-        this.itemInPlayerHand = playerInventory.Item;
         CameraController.Instance.ZoomIn(transform);
-        //Story.ShowStory();
-        contextMenu.SetActive(true);
+        playerUI.ShowGraveContextMenu();
     }
     public void StopInteraction()
-    {
-        itemInPlayerHand = null;
+    {;
         CameraController.Instance.ZoomOut();
-        contextMenu.SetActive(false);
         Story.EndStory();
     }
-    public string GetHint()
-    {
-        return Story.GetHint();
-    }
-
     public void Select()
     {
         interactionPrompt.SetActive(true);
@@ -60,16 +45,24 @@ public class Grave : MonoBehaviour, IInteractable
     {
         Story.ShowStory();
     }
-    public void HandInItem()
+    public void HandInItem(Item itemInHand)
     {
-        if(itemInPlayerHand != questItem) 
+        if (itemInHand == null || itemInHand != questItem)
+        {
             Story.ShowWrongItemStory();
+            return;
+        }
+
+        itemInHand.transform.parent = questItemLocation;
+        itemInHand.transform.position = questItemLocation.position;        
+        itemInHand.gameObject.SetActive(true);
+        itemInHand.DisableInteraction();
 
         Story.ShowQuestCompletedStory();
     }
 
-    internal void InteractionCompleted()
+    public void StoryCompleted()
     {
-        InteractionFinished?.Invoke();
+        InteractionEnded?.Invoke();
     }
 }

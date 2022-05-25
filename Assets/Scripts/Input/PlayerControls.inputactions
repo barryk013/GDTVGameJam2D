@@ -82,8 +82,30 @@
                 },
                 {
                     "name": "",
+                    "id": "1330f4f5-38d0-48f2-acab-75933006e842",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "977c1954-904c-45ee-9f66-03fa714c789b",
                     "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4f5a238e-dbcb-4d65-91f9-abe344f698d8",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -610,13 +632,22 @@
             ]
         },
         {
-            "name": "Cancel",
+            "name": "AlwaysOn",
             "id": "48aebf7a-0b4c-420f-afaa-349eb53b999f",
             "actions": [
                 {
                     "name": "Cancel",
                     "type": "Button",
                     "id": "61e6e2a4-4ab0-4708-bc80-872684983db2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "55a02144-2540-4806-a9eb-0fa157246f65",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -632,6 +663,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b8c7e27c-cf07-4f29-b641-63b075986bce",
+                    "path": "*/{Menu}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e759f23a-b4e0-4e09-9670-aa5c13cd90b9",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

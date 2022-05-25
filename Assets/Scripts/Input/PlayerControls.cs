@@ -104,8 +104,30 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""1330f4f5-38d0-48f2-acab-75933006e842"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""977c1954-904c-45ee-9f66-03fa714c789b"",
                     ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f5a238e-dbcb-4d65-91f9-abe344f698d8"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -632,13 +654,22 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Cancel"",
+            ""name"": ""AlwaysOn"",
             ""id"": ""48aebf7a-0b4c-420f-afaa-349eb53b999f"",
             ""actions"": [
                 {
                     ""name"": ""Cancel"",
                     ""type"": ""Button"",
                     ""id"": ""61e6e2a4-4ab0-4708-bc80-872684983db2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""55a02144-2540-4806-a9eb-0fa157246f65"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -654,6 +685,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b8c7e27c-cf07-4f29-b641-63b075986bce"",
+                    ""path"": ""*/{Menu}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e759f23a-b4e0-4e09-9670-aa5c13cd90b9"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -678,9 +731,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
-        // Cancel
-        m_Cancel = asset.FindActionMap("Cancel", throwIfNotFound: true);
-        m_Cancel_Cancel = m_Cancel.FindAction("Cancel", throwIfNotFound: true);
+        // AlwaysOn
+        m_AlwaysOn = asset.FindActionMap("AlwaysOn", throwIfNotFound: true);
+        m_AlwaysOn_Cancel = m_AlwaysOn.FindAction("Cancel", throwIfNotFound: true);
+        m_AlwaysOn_Menu = m_AlwaysOn.FindAction("Menu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -883,38 +937,46 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     }
     public UIActions @UI => new UIActions(this);
 
-    // Cancel
-    private readonly InputActionMap m_Cancel;
-    private ICancelActions m_CancelActionsCallbackInterface;
-    private readonly InputAction m_Cancel_Cancel;
-    public struct CancelActions
+    // AlwaysOn
+    private readonly InputActionMap m_AlwaysOn;
+    private IAlwaysOnActions m_AlwaysOnActionsCallbackInterface;
+    private readonly InputAction m_AlwaysOn_Cancel;
+    private readonly InputAction m_AlwaysOn_Menu;
+    public struct AlwaysOnActions
     {
         private @PlayerControls m_Wrapper;
-        public CancelActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Cancel => m_Wrapper.m_Cancel_Cancel;
-        public InputActionMap Get() { return m_Wrapper.m_Cancel; }
+        public AlwaysOnActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Cancel => m_Wrapper.m_AlwaysOn_Cancel;
+        public InputAction @Menu => m_Wrapper.m_AlwaysOn_Menu;
+        public InputActionMap Get() { return m_Wrapper.m_AlwaysOn; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(CancelActions set) { return set.Get(); }
-        public void SetCallbacks(ICancelActions instance)
+        public static implicit operator InputActionMap(AlwaysOnActions set) { return set.Get(); }
+        public void SetCallbacks(IAlwaysOnActions instance)
         {
-            if (m_Wrapper.m_CancelActionsCallbackInterface != null)
+            if (m_Wrapper.m_AlwaysOnActionsCallbackInterface != null)
             {
-                @Cancel.started -= m_Wrapper.m_CancelActionsCallbackInterface.OnCancel;
-                @Cancel.performed -= m_Wrapper.m_CancelActionsCallbackInterface.OnCancel;
-                @Cancel.canceled -= m_Wrapper.m_CancelActionsCallbackInterface.OnCancel;
+                @Cancel.started -= m_Wrapper.m_AlwaysOnActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_AlwaysOnActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_AlwaysOnActionsCallbackInterface.OnCancel;
+                @Menu.started -= m_Wrapper.m_AlwaysOnActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_AlwaysOnActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_AlwaysOnActionsCallbackInterface.OnMenu;
             }
-            m_Wrapper.m_CancelActionsCallbackInterface = instance;
+            m_Wrapper.m_AlwaysOnActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Cancel.started += instance.OnCancel;
                 @Cancel.performed += instance.OnCancel;
                 @Cancel.canceled += instance.OnCancel;
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
             }
         }
     }
-    public CancelActions @Cancel => new CancelActions(this);
+    public AlwaysOnActions @AlwaysOn => new AlwaysOnActions(this);
     public interface IMainControlsActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -933,8 +995,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
     }
-    public interface ICancelActions
+    public interface IAlwaysOnActions
     {
         void OnCancel(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
     }
 }

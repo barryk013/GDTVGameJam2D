@@ -81,7 +81,7 @@ public class Story : MonoBehaviour
             if (currentScript == storyParagraphs)            
                 ShowQuestHint?.Invoke(hint.Text);
 
-            grave.InteractionCompleted();            
+            grave.StoryCompleted();            
             return;
         }
 

@@ -11,9 +11,7 @@ public class Item : MonoBehaviour, IInteractable
     [SerializeField] private GameObject intereactionButton;
     [SerializeField] private UIPanel contextMenu;
 
-    private Inventory playerInventory;
-
-    public event Action InteractionFinished;
+    public event Action InteractionEnded;
 
     public Transform Transform => transform;
 
@@ -24,21 +22,17 @@ public class Item : MonoBehaviour, IInteractable
         intereactionButton.SetActive(false);
     }
 
-    public void StartInteraction(Inventory playerInventory)
+    public void StartInteraction(UIManager playerUI)
     {
-        this.playerInventory = playerInventory;
         CameraController.Instance.ZoomIn(transform);
-        //itemDescription.SetActive(true);
-        contextMenu.SetActive(true);
+        playerUI.ShowItemContextMenu();
     }
 
     public void StopInteraction()
     {
-        this.playerInventory = null;
         CameraController.Instance.ZoomOut();
         itemDescription.SetActive(false);
         itemName.SetActive(false);
-        contextMenu.SetActive(false);
     }
 
     public void Select()
@@ -55,12 +49,19 @@ public class Item : MonoBehaviour, IInteractable
     {
         itemDescription.SetActive(true);
     }
-    public void PickUpItem()
+    public void ItemPickedUp()
     {
-        if (playerInventory == null)
-            return;
-        playerInventory.PickUp(this);
-
-        InteractionFinished?.Invoke();
+        InteractionEnded?.Invoke();
+        gameObject.SetActive(false);
     }    
+    public void ItemDropped(Vector3 dropLocation)
+    {
+        transform.position = dropLocation;
+        gameObject.SetActive(true);
+    }
+
+    public void DisableInteraction()
+    {
+        Destroy(this);
+    }
 }
