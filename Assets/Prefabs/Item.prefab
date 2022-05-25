@@ -238,6 +238,37 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &2047649547115152500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8562831260850361374}
+  m_Layer: 7
+  m_Name: CameraFocusPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8562831260850361374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047649547115152500}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2705288461542644328}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2052140025165924707
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,6 +737,7 @@ Transform:
   - {fileID: 8130404661692906901}
   - {fileID: 3445889291676836898}
   - {fileID: 1327100609881730914}
+  - {fileID: 8562831260850361374}
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -726,6 +758,7 @@ MonoBehaviour:
   itemDescriptionGO: {fileID: 2052140025165924707}
   itemDescriptionText: {fileID: 401156602648180964}
   itemSpriteRenderer: {fileID: 8685681217657952107}
+  cameraFocusPoint: {fileID: 8562831260850361374}
 --- !u!114 &1448289130111176269
 MonoBehaviour:
   m_ObjectHideFlags: 0

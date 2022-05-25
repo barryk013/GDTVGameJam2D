@@ -7615,6 +7615,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 527b3a3384801114099b5597bfe1ae68, type: 2}
+  grave: {fileID: 0}
+  item: {fileID: 0}
 --- !u!114 &4890106977636803737
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,9 +8,15 @@ public class UIPanel : MonoBehaviour
     public Selectable DefaultSelection;
     public void SetActive(bool active)
     {
-        if (DefaultSelection != null && active)  
-            DefaultSelection.Select(); 
-
         gameObject.SetActive(active);
+
+        if (DefaultSelection != null && active)
+            StartCoroutine(SelectDefaultButtonNextFrame());
+    }
+
+   IEnumerator SelectDefaultButtonNextFrame()
+    {
+        yield return null;
+        DefaultSelection.Select();
     }
 }

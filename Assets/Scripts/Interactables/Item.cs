@@ -17,6 +17,8 @@ public class Item : MonoBehaviour, IInteractable, IPointerDownHandler, IPointerE
 
     [SerializeField] private SpriteRenderer itemSpriteRenderer;
 
+    [SerializeField] private Transform cameraFocusPoint;
+
     public event Action InteractionStarted;
     public event Action InteractionEnded;
 
@@ -39,7 +41,7 @@ public class Item : MonoBehaviour, IInteractable, IPointerDownHandler, IPointerE
 
     public void StartInteraction(UIManager playerUI)
     {
-        CameraController.Instance.ZoomIn(transform);
+        CameraController.Instance.ZoomIn(cameraFocusPoint);
         itemNameText.gameObject.SetActive(true);
         playerUI.ShowItemContextMenu();
     }

@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2223473537696726647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3372091315878891826}
+  m_Layer: 7
+  m_Name: CameraFocusPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3372091315878891826
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2223473537696726647}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5.03, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8318752665155053280}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6408710839324595550
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,7 +76,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.48}
+  m_Offset: {x: 0, y: 0.69}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -56,7 +87,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.44, y: 0.9083986}
+  m_Size: {x: 5.74, y: 0.9083986}
   m_EdgeRadius: 0
 --- !u!1 &6430491489111339369
 GameObject:
@@ -82,7 +113,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6430491489111339369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.42, y: -3.63, z: 0}
+  m_LocalPosition: {x: 1.16, y: -0.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -488,7 +519,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 8.36}
+  m_AnchoredPosition: {x: 0, y: 6.07}
   m_SizeDelta: {x: 10, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8318752664012417685
@@ -993,6 +1024,7 @@ Transform:
   - {fileID: 8476310553079550418}
   - {fileID: 4786492484241361643}
   - {fileID: 2261703994146634615}
+  - {fileID: 3372091315878891826}
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1008,6 +1040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a37656a3c03f7488974fd4b01acab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraFocusPoint: {fileID: 3372091315878891826}
   questItem: {fileID: 0}
   questItemLocation: {fileID: 2261703994146634615}
   graveSpriteRenderer: {fileID: 2091851322588450470}
@@ -1029,7 +1062,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 63848103d69ca7049857e65f459b86c2, type: 2}
   - {fileID: 11400000, guid: 312249028afeb904a812dbd4917e3705, type: 2}
   - {fileID: 11400000, guid: a694fa37947edbb4daaee0a9081324d3, type: 2}
-  hint: {fileID: 11400000, guid: b39567efaed66bc4c8124768a2435efd, type: 2}
+  hint: {fileID: 11400000, guid: a67a51fea42dfe546949cefc7fa84fa3, type: 2}
   wrongItemText: {fileID: 11400000, guid: 1d35d66403328a147ae9d921f6da6b2b, type: 2}
   questCompletedParagraphs:
   - {fileID: 11400000, guid: 3d1df6c9b86b1a44a8c2df4618bc0f1f, type: 2}
@@ -1060,7 +1093,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 3}
+  m_Offset: {x: 0, y: 1.5375081}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1071,7 +1104,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 6}
+  m_Size: {x: 5.07, y: 3.003998}
   m_EdgeRadius: 0
 --- !u!1 &8323102209721886018
 GameObject:

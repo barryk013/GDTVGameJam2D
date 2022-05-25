@@ -510,6 +510,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""b737a220-bcac-4753-9fee-b7572adbb241"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""960f777e-9f1f-4720-99a7-64c72192a8a6"",
                     ""path"": ""*/{Cancel}"",
                     ""interactions"": """",

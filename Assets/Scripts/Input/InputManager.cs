@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
 {
     [SerializeField] private InputScriptableObject inputScriptableObject;
-    
+
     private PlayerControls input;
     public PlayerControls Input
     {
@@ -14,7 +15,7 @@ public class InputManager : MonoBehaviour
             if (input == null)
             {
                 input = new PlayerControls();
-                input.Enable();                
+                input.Enable();
             }
             return input;
         }
@@ -30,7 +31,7 @@ public class InputManager : MonoBehaviour
     }
     private void OnDisable()
     {
-        inputScriptableObject.ResetInput();        
+        inputScriptableObject.ResetInput();
         Input.MainControls.Interact.performed -= inputScriptableObject.OnInteractionPerformed;
         Input.AlwaysOn.Cancel.performed -= inputScriptableObject.OnInteractionCanceled;
         Input.AlwaysOn.Menu.performed -= inputScriptableObject.OnStartMenuOpened;
@@ -43,7 +44,7 @@ public class InputManager : MonoBehaviour
 
     public void EnableControls(bool enabled)
     {
-        if(enabled)
+        if (enabled)
             Input.MainControls.Enable();
         else
             Input.MainControls.Disable();

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField] private List<IInteractable> interactableObjects = new List<IInteractable>();
     private IInteractable selectedObject;
+    public Grave grave;
+    public Item item;
     private Coroutine interactionCoroutine;
 
     private Inventory inventory = new Inventory();
@@ -56,6 +59,15 @@ public class PlayerInteraction : MonoBehaviour
             return;
 
         interactableObjects.Remove(interactableObject);
+        
+        if (interactableObject == selectedObject)
+        {
+            selectedObject.Deselect();
+            selectedObject.StopInteraction();
+            selectedObject.InteractionStarted -= OnInteractionPerformed;
+            
+            selectedObject = null;
+        }
 
         if (interactableObjects.Count == 0)
         {
@@ -63,13 +75,6 @@ public class PlayerInteraction : MonoBehaviour
             {
                 StopCoroutine(interactionCoroutine);
                 interactionCoroutine = null;
-            }
-
-            if (selectedObject != null)
-            {
-                selectedObject.Deselect();
-                selectedObject.StopInteraction();
-                selectedObject.InteractionStarted -= OnInteractionPerformed;
             }
         }
     }
@@ -122,6 +127,8 @@ public class PlayerInteraction : MonoBehaviour
 
         uiManager.CloseContextMenu();
         input.EnableControls(true);
+
+        EventSystem.current.SetSelectedGameObject(null);
     }
     private void OnShowHint(string hint)
     {

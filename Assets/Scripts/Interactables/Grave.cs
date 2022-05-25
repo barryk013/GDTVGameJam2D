@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 
 public class Grave : MonoBehaviour, IInteractable, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField] private Transform cameraFocusPoint;
     [SerializeField] private Item questItem;
     [SerializeField] private Transform questItemLocation;
 
@@ -25,7 +26,7 @@ public class Grave : MonoBehaviour, IInteractable, IPointerDownHandler, IPointer
     }
     public void StartInteraction(UIManager playerUI)
     {
-        CameraController.Instance.ZoomIn(transform);
+        CameraController.Instance.ZoomIn(cameraFocusPoint);
         playerUI.ShowGraveContextMenu();
     }
     public void StopInteraction()
