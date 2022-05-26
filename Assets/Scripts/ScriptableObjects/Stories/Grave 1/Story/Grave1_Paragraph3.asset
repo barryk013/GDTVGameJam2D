@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14706e8e272d0ec40a9eca0db7500aa4, type: 3}
   m_Name: Grave1_Paragraph3
   m_EditorClassIdentifier: 
-  Text: "\u2026\u2026\r\nOf course It was for her.\r\nI'd do it all again I just\u2026\r\nI
-    miss her so much.\r\nI\u2026 I didn't\u2026\r\n\u2026"
+  Text: "\u2026 Oh\u2026\r\nThought the memory of me was long lost beneath the waves.\r\nLook
+    at the state of this ol' grave\u2026\r\nCan't even read my name anymore.\r\nBeen
+    ages since last I've seen a living soul."
+  VoiceNarration: {fileID: 8300000, guid: ce4ce460c65637149946d451ef8890be, type: 3}

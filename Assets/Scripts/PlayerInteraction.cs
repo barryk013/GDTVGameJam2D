@@ -10,8 +10,6 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField] private List<IInteractable> interactableObjects = new List<IInteractable>();
     private IInteractable selectedObject;
-    public Grave grave;
-    public Item item;
     private Coroutine interactionCoroutine;
 
     private Inventory inventory = new Inventory();
@@ -92,7 +90,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if (selectedObject is Grave)
         {
-            (selectedObject as Grave).Story.ShowQuestHint += OnShowHint;
+            (selectedObject as Grave).Quest.ShowHint += OnShowHint;
         }
 
         if (interactionCoroutine != null)
@@ -119,7 +117,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if (selectedObject is Grave)
         {            
-            (selectedObject as Grave).Story.ShowQuestHint -= OnShowHint;
+            (selectedObject as Grave).Quest.ShowHint -= OnShowHint;
         }
 
         if (interactionCoroutine == null)
@@ -130,7 +128,7 @@ public class PlayerInteraction : MonoBehaviour
 
         EventSystem.current.SetSelectedGameObject(null);
     }
-    private void OnShowHint(string hint)
+    private void OnShowHint(TextScriptableObject hint)
     {
         player.ShowHint(hint);        
     }    
@@ -184,14 +182,14 @@ public class PlayerInteraction : MonoBehaviour
     private void SelectNewObject(IInteractable closestObj)
     {
         //deselect old object
-        if (selectedObject != null)
+        if (selectedObject != null && closestObj != selectedObject)
         {
             selectedObject.Deselect();
             selectedObject.StopInteraction();
         }
 
 
-        if (closestObj != null)
+        if (closestObj != null && selectedObject != closestObj)
             closestObj.Select();
 
         selectedObject = closestObj;

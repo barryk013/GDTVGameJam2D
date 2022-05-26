@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14706e8e272d0ec40a9eca0db7500aa4, type: 3}
   m_Name: Grave1_Paragraph2
   m_EditorClassIdentifier: 
-  Text: "\u2026\u2026 For her?\r\nIt was just a job\u2026\r\nI hated that job.\r\nWhy?\r\n\u2026"
+  Text: "Set depots behind us just in case.\r\n\u2026A gunshot from our sister ship\u2026\r\nAnd
+    then?\r\nI can't seem to recall\u2026"
+  VoiceNarration: {fileID: 8300000, guid: e49c03a7c148b2a43ba4a8745c46f019, type: 3}

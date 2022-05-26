@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private UIPanel itemContextMenu;
     [SerializeField] private UIPanel graveContextMenu;
+    [SerializeField] private GameObject graveHandInButton;
     [SerializeField] private GameObject contextMenuCancelButton;
 
     [SerializeField] private Transform contextMenuContainer;
@@ -38,11 +39,15 @@ public class UIManager : MonoBehaviour
         itemContextMenu.SetActive(true);
         contextMenuOpen = true;
     }
-    public void ShowGraveContextMenu()
+    public void ShowGraveContextMenu(bool questActive)
     {
         itemContextMenu.SetActive(false);        
         contextMenuCancelButton.SetActive(true);
         graveContextMenu.SetActive(true);
+
+        if (!questActive)
+            graveHandInButton.SetActive(false);
+
         contextMenuOpen = true;
     }
 

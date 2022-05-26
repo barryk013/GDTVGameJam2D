@@ -50,7 +50,7 @@ Material:
     - _Blend: 0.354
     - _BorderThickness: 0
     - _CellDensity: 4.14
-    - _PixelationAmount: 100
+    - _PixelationAmount: 51.6
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Speed: 1

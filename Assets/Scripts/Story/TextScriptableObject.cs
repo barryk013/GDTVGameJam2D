@@ -8,6 +8,7 @@ public class TextScriptableObject : ScriptableObject
 {
     [TextArea(20,40)]
     public string Text;
+    public AudioClip VoiceNarration;
     
 }
 

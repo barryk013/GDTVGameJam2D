@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     }
 
-    public void ShowHint(string hint)
+    public void ShowHint(TextScriptableObject hint)
     {
         if(showHintCoroutine == null)
             showHintCoroutine = StartCoroutine(TypeHintCoroutine(hint));
@@ -37,19 +37,19 @@ public class Player : MonoBehaviour
         playerThoughtBubble.SetActive(false);
 
     }
-    IEnumerator TypeHintCoroutine(string hint)
+    IEnumerator TypeHintCoroutine(TextScriptableObject hint)
     {
         playerThoughtText.text = string.Empty;
-        
+        AudioManager.Instance.PlayVoiceClip(hint.VoiceNarration);
 
-        WaitForSeconds timePerCharacter = new WaitForSeconds(Constants.TextTypingInterval / hint.Length);
+        WaitForSeconds timePerCharacter = new WaitForSeconds(hint.VoiceNarration.length / hint.Text.Length);
 
         int currentCharIndex = 0;
 
-        while (currentCharIndex <= hint.Length)
+        while (currentCharIndex <= hint.Text.Length)
         {
-            string visibleText = hint.Substring(0, currentCharIndex);
-            string invisibleText = $"<color=#00000000>{hint.Substring(currentCharIndex)}</color>";
+            string visibleText = hint.Text.Substring(0, currentCharIndex);
+            string invisibleText = $"<color=#00000000>{hint.Text.Substring(currentCharIndex)}</color>";
 
             playerThoughtText.text = visibleText + invisibleText;
 

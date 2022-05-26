@@ -12,27 +12,37 @@ public class Grave : MonoBehaviour, IInteractable, IPointerDownHandler, IPointer
     [SerializeField] private Transform questItemLocation;
 
     [SerializeField] private SpriteRenderer graveSpriteRenderer;
-
-    public Story Story { get; private set; }
+    private Quest _quest;
+    public Quest Quest { get { return _quest; } }
+    public Story Story { 
+        get
+        {
+            return _quest.Story;
+        }
+    }
 
     public event Action InteractionStarted;
     public event Action InteractionEnded;
 
     public Vector3 Position => transform.position;
 
+    private bool interacting = false;
+
     void Awake()
     {
-        Story = GetComponent<Story>();
+        _quest = GetComponent<Quest>(); 
     }
     public void StartInteraction(UIManager playerUI)
     {
         CameraController.Instance.ZoomIn(cameraFocusPoint);
-        playerUI.ShowGraveContextMenu();
+        playerUI.ShowGraveContextMenu(_quest.QuestActive);
+        interacting = true;
     }
     public void StopInteraction()
     {;
         CameraController.Instance.ZoomOut();
-        Story.EndStory();
+        _quest.HideDialogue();
+        interacting = false;
     }
     public void Select()
     {
@@ -46,7 +56,7 @@ public class Grave : MonoBehaviour, IInteractable, IPointerDownHandler, IPointer
 
     public void Interact()
     {
-        Story.ShowStory();
+        _quest.ShowDialogue();
     }
     public void HandInItem(Item itemInHand)
     {
@@ -61,7 +71,7 @@ public class Grave : MonoBehaviour, IInteractable, IPointerDownHandler, IPointer
         itemInHand.gameObject.SetActive(true);
         itemInHand.DisableInteraction();
 
-        Story.ShowQuestCompletedStory();
+        _quest.QuestCompleted();
     }
 
     public void StoryCompleted()
@@ -71,17 +81,20 @@ public class Grave : MonoBehaviour, IInteractable, IPointerDownHandler, IPointer
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        InteractionStarted?.Invoke();
+        if(!interacting)
+            InteractionStarted?.Invoke();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         //TODO show a different border colour for hover and selected.
-        Select();
+        if (!interacting)
+            Select();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Deselect();
+        if (!interacting)
+            Deselect();
     }
 }

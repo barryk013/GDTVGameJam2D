@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14706e8e272d0ec40a9eca0db7500aa4, type: 3}
   m_Name: Grave1_Paragraph1
   m_EditorClassIdentifier: 
-  Text: "\u2026Why?\r\nWhy?\r\nWhy\u2026?"
+  Text: "\u2026..\r\nHmmm\u2026.\r\n3 tons of coal had to be enough\u2026\r\nThe
+    bow shattering that wailing ice\r\nWhy didn't I listen to him?\r"
+  VoiceNarration: {fileID: 8300000, guid: 48ccb8ad9897f6246b07904c61116191, type: 3}

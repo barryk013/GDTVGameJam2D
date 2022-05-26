@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Grave1_Hint
   m_EditorClassIdentifier: 
   Text: Hint 1...
+  VoiceNarration: {fileID: 8300000, guid: 204ada3a42125f84492d47945fe2498d, type: 3}

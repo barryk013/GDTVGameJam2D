@@ -22,14 +22,15 @@ public class Story : MonoBehaviour
 
     private bool storyInProgress = false;
 
-    public event Action<string> ShowQuestHint;
     public event Action InteractionCompleted;
     private Grave grave;
+    private Quest quest;
 
     private void Awake()
     {
         textBoxPanel.SetActive(false);
         grave = GetComponent<Grave>();
+        quest = GetComponent<Quest>();
     }
 
     public void ShowStory()
@@ -68,8 +69,6 @@ public class Story : MonoBehaviour
 
         StopAllCoroutines();
         currentParagraphIndex = 0;
-
-        
     }
 
     public void NextPage()
@@ -78,9 +77,8 @@ public class Story : MonoBehaviour
 
         if (currentParagraphIndex == currentScript.Count - 1)
         {
-            if (currentScript == storyParagraphs)            
-                ShowQuestHint?.Invoke(hint.Text);
-
+            AudioManager.Instance.StopNarration();
+            quest.StoryCompleted();
             grave.StoryCompleted();            
             return;
         }
@@ -101,9 +99,9 @@ public class Story : MonoBehaviour
         textBox.text = currentScript[currentParagraphIndex].Text;
     }
 
-    public string GetHint()
+    public TextScriptableObject GetHint()
     {
-        return hint.Text;
+        return hint;
     }
 
     
@@ -113,10 +111,14 @@ public class Story : MonoBehaviour
         if(currentScript == null || currentScript.Count == 0)
             yield break;
 
+        AudioManager.Instance.PlayVoiceClip(currentScript[currentParagraphIndex].VoiceNarration);
+
         textBox.text = string.Empty;
         string textToWrite = currentScript[currentParagraphIndex].Text;
 
-        WaitForSeconds timePerCharacter = new WaitForSeconds(textTypingInterval / textToWrite.Length);
+        WaitForSeconds timePerCharacter = new WaitForSeconds(
+            currentScript[currentParagraphIndex].VoiceNarration.length * 0.75f 
+            / textToWrite.Length);
         
         int currentCharIndex = 0;
 
