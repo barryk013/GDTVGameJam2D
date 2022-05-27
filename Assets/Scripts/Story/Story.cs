@@ -10,13 +10,9 @@ public class Story : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textBox;
     [SerializeField] private List<TextScriptableObject> storyParagraphs = new List<TextScriptableObject>();
     [SerializeField] private TextScriptableObject hint;
-    [Tooltip("Text to show when player hands in wrong item")]
-    [SerializeField] private TextScriptableObject wrongItemText;
     [SerializeField] private List<TextScriptableObject> questCompletedParagraphs = new List<TextScriptableObject>();
 
     private List<TextScriptableObject> currentScript;
-
-    [SerializeField] private float textTypingInterval = 2;
 
     private int currentParagraphIndex = 0;
 
@@ -38,11 +34,6 @@ public class Story : MonoBehaviour
         if (storyInProgress) return;
         currentScript = storyParagraphs;
         StartStory(storyParagraphs);
-    }
-    public void ShowWrongItemStory()
-    {
-        if (storyInProgress) return;
-        StartStory(new() { wrongItemText });
     }
     public void ShowQuestCompletedStory()
     {
@@ -97,6 +88,7 @@ public class Story : MonoBehaviour
         StopAllCoroutines();
         currentParagraphIndex--;
         textBox.text = currentScript[currentParagraphIndex].Text;
+        AudioManager.Instance.PlayVoiceClip(currentScript[currentParagraphIndex].VoiceNarration);
     }
 
     public TextScriptableObject GetHint()

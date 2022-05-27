@@ -50,7 +50,7 @@ Material:
     - _Blend: 0.354
     - _BorderThickness: 0
     - _CellDensity: 4.14
-    - _PixelationAmount: 51.6
+    - _PixelationAmount: 107.5
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Speed: 1
@@ -58,6 +58,6 @@ Material:
     - _WindSpeed: 0.3
     m_Colors:
     - _BorderColour: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0, g: 0.7169812, b: 0.01151668, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

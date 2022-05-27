@@ -8,11 +8,12 @@ using UnityEngine.EventSystems;
 public class Item : MonoBehaviour, IInteractable, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private ItemScriptableObject itemPreset;
+    public int ItemId { get => itemPreset.Id; }
 
     //[SerializeField] private GameObject itemNameGO;
     [SerializeField] private TextMeshProUGUI itemNameText;
 
-    [SerializeField] private GameObject itemDescriptionGO;
+    [SerializeField] private UIPanel itemDescriptionPanel;
     [SerializeField] private TextMeshProUGUI itemDescriptionText;
 
     [SerializeField] private SpriteRenderer itemSpriteRenderer;
@@ -27,7 +28,7 @@ public class Item : MonoBehaviour, IInteractable, IPointerDownHandler, IPointerE
     private void Awake()
     {
         itemNameText.gameObject.SetActive(false);
-        itemDescriptionGO.SetActive(false);
+        itemDescriptionPanel.SetActive(false);
 
         itemNameText.text = itemPreset.Name;
         itemDescriptionText.text = itemPreset.Description;
@@ -49,7 +50,7 @@ public class Item : MonoBehaviour, IInteractable, IPointerDownHandler, IPointerE
     public void StopInteraction()
     {
         CameraController.Instance.ZoomOut();
-        itemDescriptionGO.SetActive(false);
+        itemDescriptionPanel.SetActive(false);
         itemNameText.gameObject.SetActive(false);
     }
 
@@ -64,7 +65,7 @@ public class Item : MonoBehaviour, IInteractable, IPointerDownHandler, IPointerE
     }
     public void Inspect()
     {
-        itemDescriptionGO.SetActive(true);
+        itemDescriptionPanel.SetActive(true);
     }
     public void ItemPickedUp()
     {

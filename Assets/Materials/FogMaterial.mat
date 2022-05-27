@@ -61,7 +61,7 @@ Material:
     - _DistortionSpeed: 0.15
     - _FogAlpha: 1
     - _FogOpacity: 0.727
-    - _FogPower: 0.9
+    - _FogPower: 0.45
     - _FogScale: 2
     - _FogScale1: 0.12
     - _FogScale2: 4.61

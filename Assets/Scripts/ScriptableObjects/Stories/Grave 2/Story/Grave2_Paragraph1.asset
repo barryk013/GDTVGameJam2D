@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14706e8e272d0ec40a9eca0db7500aa4, type: 3}
   m_Name: Grave2_Paragraph1
   m_EditorClassIdentifier: 
-  Text: Different Paragraph 1
-  LettersPerSecond: 5
+  Text: '...Why?
+
+    Why?
+
+    Why...?
+
+'
+  VoiceNarration: {fileID: 8300000, guid: 837bdf5f56bb7164eb9239145fee701f, type: 3}

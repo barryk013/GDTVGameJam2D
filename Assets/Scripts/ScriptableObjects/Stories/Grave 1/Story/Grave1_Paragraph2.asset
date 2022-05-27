@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text: "Set depots behind us just in case.\r\n\u2026A gunshot from our sister ship\u2026\r\nAnd
     then?\r\nI can't seem to recall\u2026"
-  VoiceNarration: {fileID: 8300000, guid: e49c03a7c148b2a43ba4a8745c46f019, type: 3}
+  VoiceNarration: {fileID: 8300000, guid: 3affc46a918b626468d243ec949b8fa5, type: 3}

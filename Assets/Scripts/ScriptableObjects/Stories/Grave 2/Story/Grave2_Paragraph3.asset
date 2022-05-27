@@ -12,5 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14706e8e272d0ec40a9eca0db7500aa4, type: 3}
   m_Name: Grave2_Paragraph3
   m_EditorClassIdentifier: 
-  Text: Different Paragraph 3
-  LettersPerSecond: 5
+  Text: 'Of course It was for her.
+
+    I''d do it all again I just...
+
+    I miss
+    her so much.
+
+    I... I didn''t...
+
+    ...
+
+'
+  VoiceNarration: {fileID: 8300000, guid: 6a8514b77eb718a4e87651e23e4ff3eb, type: 3}

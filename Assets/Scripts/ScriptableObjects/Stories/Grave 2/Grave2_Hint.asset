@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14706e8e272d0ec40a9eca0db7500aa4, type: 3}
   m_Name: Grave2_Hint
   m_EditorClassIdentifier: 
-  Text: Hint 2
+  Text: It looks like no one has come to this grave in a long time, maybe if I find
+    some flowers to place on it?
+  VoiceNarration: {fileID: 8300000, guid: 948b94fa2f4b039428e636cc502e081e, type: 3}

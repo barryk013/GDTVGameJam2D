@@ -8,8 +8,7 @@ using UnityEngine.EventSystems;
 public class Grave : MonoBehaviour, IInteractable, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Transform cameraFocusPoint;
-    [SerializeField] private Item questItem;
-    [SerializeField] private Transform questItemLocation;
+    [SerializeField] private GraveScriptableObject gravePreset;
 
     [SerializeField] private SpriteRenderer graveSpriteRenderer;
     private Quest _quest;
@@ -58,18 +57,21 @@ public class Grave : MonoBehaviour, IInteractable, IPointerDownHandler, IPointer
     {
         _quest.ShowDialogue();
     }
-    public void HandInItem(Item itemInHand)
+    public void HandInItem(Item item)
     {
-        if (itemInHand == null || itemInHand != questItem)
+        if (item.ItemId != gravePreset.Id)
         {
-            Story.ShowWrongItemStory();
+            Quest.WrongItemHandIn();
+            InteractionEnded?.Invoke();
             return;
         }
 
-        itemInHand.transform.parent = questItemLocation;
-        itemInHand.transform.position = questItemLocation.position;        
-        itemInHand.gameObject.SetActive(true);
-        itemInHand.DisableInteraction();
+        Destroy(item.gameObject);
+
+        //item.transform.parent = questItemLocation;
+        //item.transform.position = questItemLocation.position;
+        //item.gameObject.SetActive(true);
+        //item.DisableInteraction();
 
         _quest.QuestCompleted();
     }

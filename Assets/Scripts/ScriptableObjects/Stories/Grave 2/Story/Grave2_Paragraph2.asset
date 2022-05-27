@@ -12,5 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14706e8e272d0ec40a9eca0db7500aa4, type: 3}
   m_Name: Grave2_Paragraph2
   m_EditorClassIdentifier: 
-  Text: Different Paragraph 2
-  LettersPerSecond: 5
+  Text: '...For her?
+
+    It was just a job...
+
+    I hated that job.
+
+    Why?
+
+'
+  VoiceNarration: {fileID: 8300000, guid: e4fbcba044dfacd46b607b6e8d2583d7, type: 3}

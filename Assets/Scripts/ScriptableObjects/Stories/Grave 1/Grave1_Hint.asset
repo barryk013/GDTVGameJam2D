@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14706e8e272d0ec40a9eca0db7500aa4, type: 3}
   m_Name: Grave1_Hint
   m_EditorClassIdentifier: 
-  Text: Hint 1...
-  VoiceNarration: {fileID: 8300000, guid: 204ada3a42125f84492d47945fe2498d, type: 3}
+  Text: "This tombstone is covered in moss. \nMaybe with a brush of some kind I could
+    clean it off?"
+  VoiceNarration: {fileID: 8300000, guid: edd33eb5f5e9c3b418fa7b8171c21a22, type: 3}

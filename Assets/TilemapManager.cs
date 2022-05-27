@@ -6,13 +6,12 @@ using UnityEngine.Tilemaps;
 public class TilemapManager : MonoBehaviour
 {
     public static TilemapManager Instance { get; private set; }
-    private Tilemap _tilemap;
+    [SerializeField] private Tilemap _fenceTilemap;
     private Grid _grid;
 
     private void Awake()
     {
-        _tilemap = GetComponent<Tilemap>();
-        _grid = GetComponentInParent<Grid>();
+        _grid = GetComponent<Grid>();
 
         if (Instance != null)
             Destroy(this);
@@ -23,6 +22,6 @@ public class TilemapManager : MonoBehaviour
     public void RemoveTile(Vector3 position)
     {
         Vector3Int pos = _grid.WorldToCell(position);
-        _tilemap.SetTile(pos, null);
+        _fenceTilemap.SetTile(pos, null);
     }
 }

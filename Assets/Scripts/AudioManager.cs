@@ -14,6 +14,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private Slider voiceVolumeSlider;
     [SerializeField] private AudioMixer mixer;
 
+    [SerializeField] private AudioClip gateOpeningAudio;
+    public float GateSFXAudioLength { get => gateOpeningAudio.length; }
+
     private string _backgrounMusicVolume = "BackgroundMusicVolume";
     private string _sfxVolume = "SFXVolume";
     private string _voiceVolume = "VoiceVolume";
@@ -23,6 +26,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private float multiplier = 30;
 
     [SerializeField] private AudioSource voiceNarrationAudioSource;
+    [SerializeField] private AudioSource sfxAudioSource;
 
     private void Awake()
     {        
@@ -83,5 +87,9 @@ public class AudioManager : MonoBehaviour
     public void StopNarration()
     {
         voiceNarrationAudioSource.Stop();
+    }
+    public void PlayGateOpeningAudio()
+    {
+        sfxAudioSource.PlayOneShot(gateOpeningAudio);
     }
 }
