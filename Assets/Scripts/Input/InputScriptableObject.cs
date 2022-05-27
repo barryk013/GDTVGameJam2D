@@ -12,12 +12,13 @@ public class InputScriptableObject : ScriptableObject
     public event Action InteractionPerformed;
     public event Action InteractionCanceled;
     public event Action PickUpActionPerformed;
+    public event Action StartMenuOpened;
     #endregion
 
     #region Event Listeners
     public void OnInteractionPerformed(InputAction.CallbackContext obj) { InteractionPerformed?.Invoke(); }
-    public void OnInteractionCanceled(InputAction.CallbackContext obj) { InteractionCanceled?.Invoke(); }    
-    public void OnPickUpActionPerformed(InputAction.CallbackContext obj) { PickUpActionPerformed?.Invoke(); }
+    public void OnInteractionCanceled(InputAction.CallbackContext obj) { InteractionCanceled?.Invoke(); }   
+    public void OnStartMenuOpened(InputAction.CallbackContext obj) { StartMenuOpened?.Invoke(); }
 
     public void SetInputManager(InputManager inputManager)
     {
@@ -38,4 +39,13 @@ public class InputScriptableObject : ScriptableObject
         }
     }
     #endregion
+
+    public void EnableControls(bool enabled)
+    {
+        if (inputManager == null)
+            return;
+
+        inputManager.EnableControls(enabled);
+    }
+
 }

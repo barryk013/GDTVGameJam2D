@@ -37,27 +37,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Pick Up"",
-                    ""type"": ""Button"",
-                    ""id"": ""e089868c-caff-44e9-8722-f8e04ec0f3f2"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""d7a9eda8-7eb7-4515-a817-5c94436256e7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Cancel"",
-                    ""type"": ""Button"",
-                    ""id"": ""139f3b69-bc74-4766-a2f6-f7b789b5ffcf"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -122,12 +104,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0c7122e3-c193-469b-b3d5-99be7f996c9d"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""id"": ""1330f4f5-38d0-48f2-acab-75933006e842"",
+                    ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pick Up"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -144,12 +126,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""eb5381c3-820c-405c-98c0-3a56061a5010"",
-                    ""path"": ""*/{Cancel}"",
+                    ""id"": ""4f5a238e-dbcb-4d65-91f9-abe344f698d8"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Cancel"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -528,6 +510,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""b737a220-bcac-4753-9fee-b7572adbb241"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""960f777e-9f1f-4720-99a7-64c72192a8a6"",
                     ""path"": ""*/{Cancel}"",
                     ""interactions"": """",
@@ -670,6 +663,76 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""AlwaysOn"",
+            ""id"": ""48aebf7a-0b4c-420f-afaa-349eb53b999f"",
+            ""actions"": [
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""61e6e2a4-4ab0-4708-bc80-872684983db2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""55a02144-2540-4806-a9eb-0fa157246f65"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""fa88ed7a-84df-4666-ad5a-8ad943a63b3e"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""05640f35-35c7-438a-a657-e3fb35ee5518"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b8c7e27c-cf07-4f29-b641-63b075986bce"",
+                    ""path"": ""*/{Menu}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e759f23a-b4e0-4e09-9670-aa5c13cd90b9"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -677,9 +740,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // MainControls
         m_MainControls = asset.FindActionMap("MainControls", throwIfNotFound: true);
         m_MainControls_Move = m_MainControls.FindAction("Move", throwIfNotFound: true);
-        m_MainControls_PickUp = m_MainControls.FindAction("Pick Up", throwIfNotFound: true);
         m_MainControls_Interact = m_MainControls.FindAction("Interact", throwIfNotFound: true);
-        m_MainControls_Cancel = m_MainControls.FindAction("Cancel", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -692,6 +753,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // AlwaysOn
+        m_AlwaysOn = asset.FindActionMap("AlwaysOn", throwIfNotFound: true);
+        m_AlwaysOn_Cancel = m_AlwaysOn.FindAction("Cancel", throwIfNotFound: true);
+        m_AlwaysOn_Menu = m_AlwaysOn.FindAction("Menu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -752,17 +817,13 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_MainControls;
     private IMainControlsActions m_MainControlsActionsCallbackInterface;
     private readonly InputAction m_MainControls_Move;
-    private readonly InputAction m_MainControls_PickUp;
     private readonly InputAction m_MainControls_Interact;
-    private readonly InputAction m_MainControls_Cancel;
     public struct MainControlsActions
     {
         private @PlayerControls m_Wrapper;
         public MainControlsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_MainControls_Move;
-        public InputAction @PickUp => m_Wrapper.m_MainControls_PickUp;
         public InputAction @Interact => m_Wrapper.m_MainControls_Interact;
-        public InputAction @Cancel => m_Wrapper.m_MainControls_Cancel;
         public InputActionMap Get() { return m_Wrapper.m_MainControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -775,15 +836,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnMove;
-                @PickUp.started -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnPickUp;
-                @PickUp.performed -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnPickUp;
-                @PickUp.canceled -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnPickUp;
                 @Interact.started -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnInteract;
-                @Cancel.started -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnCancel;
-                @Cancel.performed -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnCancel;
-                @Cancel.canceled -= m_Wrapper.m_MainControlsActionsCallbackInterface.OnCancel;
             }
             m_Wrapper.m_MainControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -791,15 +846,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @PickUp.started += instance.OnPickUp;
-                @PickUp.performed += instance.OnPickUp;
-                @PickUp.canceled += instance.OnPickUp;
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
-                @Cancel.started += instance.OnCancel;
-                @Cancel.performed += instance.OnCancel;
-                @Cancel.canceled += instance.OnCancel;
             }
         }
     }
@@ -909,12 +958,51 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // AlwaysOn
+    private readonly InputActionMap m_AlwaysOn;
+    private IAlwaysOnActions m_AlwaysOnActionsCallbackInterface;
+    private readonly InputAction m_AlwaysOn_Cancel;
+    private readonly InputAction m_AlwaysOn_Menu;
+    public struct AlwaysOnActions
+    {
+        private @PlayerControls m_Wrapper;
+        public AlwaysOnActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Cancel => m_Wrapper.m_AlwaysOn_Cancel;
+        public InputAction @Menu => m_Wrapper.m_AlwaysOn_Menu;
+        public InputActionMap Get() { return m_Wrapper.m_AlwaysOn; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(AlwaysOnActions set) { return set.Get(); }
+        public void SetCallbacks(IAlwaysOnActions instance)
+        {
+            if (m_Wrapper.m_AlwaysOnActionsCallbackInterface != null)
+            {
+                @Cancel.started -= m_Wrapper.m_AlwaysOnActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_AlwaysOnActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_AlwaysOnActionsCallbackInterface.OnCancel;
+                @Menu.started -= m_Wrapper.m_AlwaysOnActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_AlwaysOnActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_AlwaysOnActionsCallbackInterface.OnMenu;
+            }
+            m_Wrapper.m_AlwaysOnActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
+            }
+        }
+    }
+    public AlwaysOnActions @AlwaysOn => new AlwaysOnActions(this);
     public interface IMainControlsActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnPickUp(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnCancel(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -928,5 +1016,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    public interface IAlwaysOnActions
+    {
+        void OnCancel(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
     }
 }
