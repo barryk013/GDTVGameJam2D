@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,19 +15,16 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private Slider voiceVolumeSlider;
     [SerializeField] private AudioMixer mixer;
 
-    [SerializeField] private AudioClip gateOpeningAudio;
-    public float GateSFXAudioLength { get => gateOpeningAudio.length; }
-
     private string _backgrounMusicVolume = "BackgroundMusicVolume";
     private string _sfxVolume = "SFXVolume";
     private string _voiceVolume = "VoiceVolume";
     private string _masterVolume = "MasterVolume";
 
-
-    [SerializeField] private float multiplier = 30;
-
+    [SerializeField] private AudioSource backgrounAudioSource;
     [SerializeField] private AudioSource voiceNarrationAudioSource;
     [SerializeField] private AudioSource sfxAudioSource;
+
+    [SerializeField] private List<AudioSource> audioSources = new List<AudioSource>();
 
     private void Awake()
     {        
@@ -57,6 +55,12 @@ public class AudioManager : MonoBehaviour
         mixer.GetFloat(_voiceVolume, out volume);
         voiceVolumeSlider.SetValueWithoutNotify(volume);
     }
+
+    public void PlaySFX(AudioClip gateOpeningSound)
+    {
+        sfxAudioSource.PlayOneShot(gateOpeningSound);
+    }
+
     private void OnDisable()
     {
         backgroundMusicVolumeSlider.onValueChanged.RemoveListener(OnBackgroundMusicVolumeChanged);
@@ -88,8 +92,12 @@ public class AudioManager : MonoBehaviour
     {
         voiceNarrationAudioSource.Stop();
     }
-    public void PlayGateOpeningAudio()
+
+    public void SetVolume(float percent)
     {
-        sfxAudioSource.PlayOneShot(gateOpeningAudio);
+        foreach (var audioSource in audioSources)
+        {
+            audioSource.volume = percent;
+        }
     }
 }

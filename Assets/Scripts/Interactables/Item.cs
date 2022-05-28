@@ -40,7 +40,7 @@ public class Item : MonoBehaviour, IInteractable, IPointerDownHandler, IPointerE
         itemSpriteRenderer.sprite = itemPreset.ItemSprite;
     }
 
-    public void StartInteraction(UIManager playerUI)
+    public void StartInteraction(PlayerUI playerUI)
     {
         CameraController.Instance.ZoomIn(cameraFocusPoint);
         itemNameText.gameObject.SetActive(true);

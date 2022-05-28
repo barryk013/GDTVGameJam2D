@@ -10,7 +10,7 @@ public interface IInteractable
     public Vector3 Position { get; }
     public event Action InteractionStarted;
     public event Action InteractionEnded;
-    public void StartInteraction(UIManager playerUI);
+    public void StartInteraction(PlayerUI playerUI);
     public void StopInteraction();
     public void Select();
     public void Deselect();

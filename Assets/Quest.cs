@@ -9,10 +9,12 @@ public class Quest : MonoBehaviour
     [SerializeField] private List<Transform> gateLocationTransforms = new List<Transform>();
 
     public bool QuestActive = true;
+    public bool CompletedStoryRead = false;
 
     public event Action<TextScriptableObject> ShowHint;
     [SerializeField] private GameObject questItem;
 
+    [SerializeField] private AudioClip gateOpeningSound;
     private void Awake()
     {
         Story = GetComponent<Story>();
@@ -74,8 +76,8 @@ public class Quest : MonoBehaviour
     {
         if (gateLocationTransforms.Count > 0)
         {
-            AudioManager.Instance.PlayGateOpeningAudio();
-            yield return new WaitForSeconds(AudioManager.Instance.GateSFXAudioLength);
+            AudioManager.Instance.PlaySFX(gateOpeningSound);
+            yield return new WaitForSeconds(gateOpeningSound.length);
         }
 
         ShowDialogue();

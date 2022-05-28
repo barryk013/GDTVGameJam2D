@@ -69,6 +69,7 @@ public class Story : MonoBehaviour
         if (currentParagraphIndex == currentScript.Count - 1)
         {
             AudioManager.Instance.StopNarration();
+            quest.CompletedStoryRead = true;
             quest.StoryCompleted();
             grave.StoryCompleted();            
             return;

@@ -15,11 +15,11 @@ public class PlayerInteraction : MonoBehaviour
     private Inventory inventory = new Inventory();
 
     private Player player;
-    private UIManager uiManager;
+    private PlayerUI uiManager;
 
     private void Awake()
     {
-        uiManager = GetComponent<UIManager>();
+        uiManager = GetComponent<PlayerUI>();
         player = GetComponent<Player>();
     }
 

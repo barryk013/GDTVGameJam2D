@@ -28,6 +28,9 @@ public class InputManager : MonoBehaviour
         Input.MainControls.Interact.performed += inputScriptableObject.OnInteractionPerformed;
         Input.AlwaysOn.Cancel.performed += inputScriptableObject.OnInteractionCanceled;
         Input.AlwaysOn.Menu.performed += inputScriptableObject.OnStartMenuOpened;
+
+        input.MainControls.Move.performed += inputScriptableObject.OnMovePerformed;
+        input.MainControls.Move.canceled += inputScriptableObject.OnMoveCanceled;
     }
     private void OnDisable()
     {
@@ -35,6 +38,9 @@ public class InputManager : MonoBehaviour
         Input.MainControls.Interact.performed -= inputScriptableObject.OnInteractionPerformed;
         Input.AlwaysOn.Cancel.performed -= inputScriptableObject.OnInteractionCanceled;
         Input.AlwaysOn.Menu.performed -= inputScriptableObject.OnStartMenuOpened;
+
+        input.MainControls.Move.performed -= inputScriptableObject.OnMovePerformed;
+        input.MainControls.Move.canceled -= inputScriptableObject.OnMoveCanceled;
     }
 
     public Vector2 ReadMovementVector()

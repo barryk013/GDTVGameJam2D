@@ -31,10 +31,9 @@ public class Grave : MonoBehaviour, IInteractable, IPointerDownHandler, IPointer
     {
         _quest = GetComponent<Quest>(); 
     }
-    public void StartInteraction(UIManager playerUI)
-    {
-        CameraController.Instance.ZoomIn(cameraFocusPoint);
-        playerUI.ShowGraveContextMenu(_quest.QuestActive);
+    public void StartInteraction(PlayerUI playerUI)
+    {        
+        playerUI.ShowGraveContextMenu(_quest.QuestActive, _quest.CompletedStoryRead, gravePreset.ContextMenuActionName);
         interacting = true;
     }
     public void StopInteraction()
@@ -55,11 +54,12 @@ public class Grave : MonoBehaviour, IInteractable, IPointerDownHandler, IPointer
 
     public void Interact()
     {
+        CameraController.Instance.ZoomIn(cameraFocusPoint);
         _quest.ShowDialogue();
     }
     public void HandInItem(Item item)
     {
-        if (item.ItemId != gravePreset.Id)
+        if (item == null ||  item.ItemId != gravePreset.Id)
         {
             Quest.WrongItemHandIn();
             InteractionEnded?.Invoke();
@@ -67,12 +67,7 @@ public class Grave : MonoBehaviour, IInteractable, IPointerDownHandler, IPointer
         }
 
         Destroy(item.gameObject);
-
-        //item.transform.parent = questItemLocation;
-        //item.transform.position = questItemLocation.position;
-        //item.gameObject.SetActive(true);
-        //item.DisableInteraction();
-
+        CameraController.Instance.ZoomIn(cameraFocusPoint);
         _quest.QuestCompleted();
     }
 

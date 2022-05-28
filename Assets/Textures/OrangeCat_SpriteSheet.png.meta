@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9f695853487c9c842a7ea62328da5864
+guid: 863cfdfad319d054e905c29cbb49af7a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -135,17 +135,17 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 160
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fab6caff2b0464d49af99d1bff933f05
-      internalID: 1266921947
+      spriteID: 7e1bdfc502a865f4a9c96ac3c5733398
+      internalID: -1223601571
       vertices: []
       indices: 
       edges: []
@@ -154,19 +154,19 @@ TextureImporter:
       name: OrangeCat_SpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 160
         y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 160
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b71d0d616830664ab6d59ed6cb5574f
-      internalID: 2084176019
+      spriteID: 0bd3ed7e6e9ab9e4f91676a98ab2d369
+      internalID: 436765861
       vertices: []
       indices: 
       edges: []
@@ -175,19 +175,19 @@ TextureImporter:
       name: OrangeCat_SpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 32
+        x: 320
         y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 160
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a420e0e8782c6144ba7dac60207dcd0e
-      internalID: -2014997856
+      spriteID: b9c0b9d2b3b5a5c45b7845de9c3984ea
+      internalID: 313234788
       vertices: []
       indices: 
       edges: []
@@ -196,19 +196,19 @@ TextureImporter:
       name: OrangeCat_SpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 48
+        x: 480
         y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 160
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f0973e8e887f23418e6fe83f2e33a62
-      internalID: -2122099116
+      spriteID: bb719fb440fcd4c4e977d2512c33e0f2
+      internalID: -1456002193
       vertices: []
       indices: 
       edges: []
@@ -217,19 +217,19 @@ TextureImporter:
       name: OrangeCat_SpriteSheet_4
       rect:
         serializedVersion: 2
-        x: 64
+        x: 640
         y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 160
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1aadf57d5400a204890e09a0495ca325
-      internalID: 666230660
+      spriteID: 867e12c20462ab843977b4c10a501c87
+      internalID: 976306079
       vertices: []
       indices: 
       edges: []
@@ -238,19 +238,19 @@ TextureImporter:
       name: OrangeCat_SpriteSheet_5
       rect:
         serializedVersion: 2
-        x: 80
+        x: 800
         y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 160
+        height: 160
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3046d469c2c9ee943872d246f06a13c1
-      internalID: -1063950189
+      spriteID: e9017bc6eecbc824c869a1a3c8094f5b
+      internalID: 1408674808
       vertices: []
       indices: 
       edges: []
@@ -266,12 +266,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      OrangeCat_SpriteSheet_0: 1266921947
-      OrangeCat_SpriteSheet_1: 2084176019
-      OrangeCat_SpriteSheet_2: -2014997856
-      OrangeCat_SpriteSheet_3: -2122099116
-      OrangeCat_SpriteSheet_5: -1063950189
-      OrangeCat_SpriteSheet_4: 666230660
+      OrangeCat_SpriteSheet_0: -1223601571
+      OrangeCat_SpriteSheet_1: 436765861
+      OrangeCat_SpriteSheet_2: 313234788
+      OrangeCat_SpriteSheet_3: -1456002193
+      OrangeCat_SpriteSheet_5: 1408674808
+      OrangeCat_SpriteSheet_4: 976306079
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 
