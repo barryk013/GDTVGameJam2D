@@ -68,7 +68,7 @@ public class Grave : MonoBehaviour, IInteractable, IPointerDownHandler, IPointer
 
         Destroy(item.gameObject);
         CameraController.Instance.ZoomIn(cameraFocusPoint);
-        _quest.QuestCompleted();
+        _quest.QuestComplete();
     }
 
     public void StoryCompleted()

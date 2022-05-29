@@ -19,6 +19,21 @@ public class PlayerSprite : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    /// <summary>
+    /// Updates sprite look direction and sprite layer.
+    /// </summary>
+    /// <param name="inputX"></param>
+    public void UpdateSprite(float inputX)
+    {
+        SetSpriteLookDirection(inputX);
+        SetSpriteLayerOrder();
+    }
+
+    private void SetSpriteLayerOrder()
+    {
         playerSpriteRenderer.sortingOrder = (int)(playerSpriteRenderer.transform.position.y * -100);
 
         foreach (var sprite in spritesInFrontOfPlayer)
@@ -29,20 +44,32 @@ public class PlayerSprite : MonoBehaviour
         {
             sprite.sortingOrder = playerSpriteRenderer.sortingOrder - 1;
         }
-
-        SetSpriteLookDirection();
     }
 
-    private void SetSpriteLookDirection()
+    private void SetSpriteLookDirection(float inputX)
     {
         Vector3 characterScale = playerSpriteRenderer.transform.localScale;
 
-        if (input.MovementVector.x > 0)
+        //default look direction is left. multiply by -1 to look right.
+        if (inputX > 0)
             characterScale.x = Mathf.Abs(characterScale.x) * -1;
 
-        else if (input.MovementVector.x < 0)
+        else if (inputX < 0)
             characterScale.x = Mathf.Abs(characterScale.x);
 
+        playerSpriteRenderer.transform.localScale = characterScale;
+    }
+
+    public void LookRight()
+    {
+        Vector3 characterScale = playerSpriteRenderer.transform.localScale;
+        characterScale.x = Mathf.Abs(characterScale.x) * -1;
+        playerSpriteRenderer.transform.localScale = characterScale;
+    }
+    public void LookLeft()
+    {
+        Vector3 characterScale = playerSpriteRenderer.transform.localScale;
+        characterScale.x = Mathf.Abs(characterScale.x);
         playerSpriteRenderer.transform.localScale = characterScale;
     }
 }

@@ -24,6 +24,17 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource voiceNarrationAudioSource;
     [SerializeField] private AudioSource sfxAudioSource;
 
+    private AudioClip _backgroundMusic;
+
+    public void SetBackgroundMusic(AudioClip backgroundMusic)
+    {
+        if (this._backgroundMusic == backgroundMusic)
+            return;
+
+        backgrounAudioSource.clip = backgroundMusic;
+        backgrounAudioSource.Play();
+    }
+
     [SerializeField] private List<AudioSource> audioSources = new List<AudioSource>();
 
     private void Awake()
@@ -35,6 +46,7 @@ public class AudioManager : MonoBehaviour
         }
         Instance = this;
     }
+    
 
     private void OnEnable()
     {

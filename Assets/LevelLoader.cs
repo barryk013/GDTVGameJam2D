@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,9 @@ public class LevelLoader : MonoBehaviour
     [SerializeField] private CanvasGroup blackScreen;
     [SerializeField] private AudioManager audioManager;
 
+    public static event Action FadeInCompleted;
+    public static event Action FadeOutCompleted;
+
     private void Awake()
     {
         if (Instance != null)
@@ -18,13 +22,18 @@ public class LevelLoader : MonoBehaviour
         blackScreen.alpha = 1;
     }
 
-    private void Start()
+    public void FadeOut()
     {
-        StartCoroutine(FadeIn());
+        StartCoroutine(FadeOutCoroutine());
+    }
+    public void FadeIn()
+    {
+        StartCoroutine(FadeInCoroutine());
     }
 
-    IEnumerator FadeIn()
+    IEnumerator FadeInCoroutine()
     {
+        blackScreen.alpha = 1;
         float timer = 0;
         while (timer < Constants.FadeTime)
         {
@@ -35,14 +44,12 @@ public class LevelLoader : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
+        FadeInCompleted?.Invoke();
     }
 
-    public void LoadLevel(int level)
+    IEnumerator FadeOutCoroutine()
     {
-        StartCoroutine(LoadLevelCoroutine(1));
-    }
-    IEnumerator LoadLevelCoroutine(int level)
-    {
+        blackScreen.alpha = 0;
         float timer = 0;
         while (timer < Constants.FadeTime)
         {
@@ -52,14 +59,8 @@ public class LevelLoader : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
-        SceneManager.LoadScene(level);
-    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            SceneManager.LoadScene(2);
-        }
+        yield return new WaitForSeconds(1);
+        FadeOutCompleted?.Invoke();
     }
 }

@@ -11,6 +11,8 @@ public class Quest : MonoBehaviour
     public bool QuestActive = true;
     public bool CompletedStoryRead = false;
 
+    public event Action QuestCompleted;
+
     public event Action<TextScriptableObject> ShowHint;
     [SerializeField] private GameObject questItem;
 
@@ -21,7 +23,7 @@ public class Quest : MonoBehaviour
         questItem.SetActive(false);
     }
 
-    public void QuestCompleted()
+    public void QuestComplete()
     {        
         QuestActive = false;
         
@@ -33,8 +35,6 @@ public class Quest : MonoBehaviour
         questItem.SetActive(true);
 
         StartCoroutine(OpenGateAndCompleteQuest());
-
-        
     }
 
     public void ShowDialogue()
@@ -76,6 +76,7 @@ public class Quest : MonoBehaviour
     {
         if (gateLocationTransforms.Count > 0)
         {
+            AudioManager.Instance.StopNarration();
             AudioManager.Instance.PlaySFX(gateOpeningSound);
             yield return new WaitForSeconds(gateOpeningSound.length);
         }

@@ -9,10 +9,12 @@ public class Player : MonoBehaviour
     [SerializeField] private TextMeshProUGUI playerThoughtText;
 
     private Coroutine showHintCoroutine;
+    private PlayerController _playerController;
 
     private void Awake()
     {
         playerThoughtBubble.SetActive(false);
+        _playerController = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -60,6 +62,12 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(Constants.HintDisplayTime);
 
         playerThoughtBubble.SetActive(false);
+    }
+
+
+    public void GoToNewArea(Area area)
+    {
+        _playerController.GoToNewArea(area);
     }
 }
 

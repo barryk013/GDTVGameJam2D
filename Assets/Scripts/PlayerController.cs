@@ -10,22 +10,22 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigidBody;
     private Animator _animator;
 
-    private Vector3 refVel = Vector3.zero;
+    private PlayerSprite _playerSprite;
 
-    [SerializeField] private Vector3 initialPos;
-    private Vector3 startingPos;
+    private Coroutine _movementCoroutine;
+    private WaitForSeconds fixedDeltaTime;
 
+    private Coroutine _autoMoveCoroutine;
     private void Awake()
     {
+        fixedDeltaTime = new WaitForSeconds(Time.fixedDeltaTime);
         _animator = GetComponent<Animator>();
-        
-        
+
+        _playerSprite = GetComponent<PlayerSprite>();
     }
     
     private void OnEnable()
     {
-        startingPos = GameObject.FindGameObjectWithTag("StartingPosition").transform.position;
-        transform.position = initialPos;        
         input.MovementPerformed += OnMovementPerformed;
         input.MovementCanceled += OnMovementCanceled;
     }
@@ -39,45 +39,69 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
-        StartCoroutine(MoveToInitialPosition());
     }
 
     private void OnMovementPerformed()
     {
         _animator.SetBool("Moving", true);
+
+        if(_movementCoroutine == null)        
+            _movementCoroutine = StartCoroutine(MovementCoroutine());
+        
     }
     private void OnMovementCanceled()
     {
         _animator.SetBool("Moving", false);
+        _rigidBody.velocity = Vector2.zero;
+        if (_movementCoroutine != null)
+        {
+            StopCoroutine(_movementCoroutine);
+            _movementCoroutine = null;
+        }            
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    IEnumerator MovementCoroutine()
     {
-        MovePlayer();
+        while (true)
+        {
+            _rigidBody.velocity = movementSpeed * Time.fixedDeltaTime * input.MovementVector;
+            _playerSprite.UpdateSprite(input.MovementVector.x);
+
+            yield return fixedDeltaTime;
+        }
     }
 
-    private void MovePlayer()
+
+    public void GoToNewArea(Area areaTrigger)
     {
-        _rigidBody.velocity = movementSpeed * Time.fixedDeltaTime * input.MovementVector;
+        if(_autoMoveCoroutine == null)
+            _autoMoveCoroutine = StartCoroutine(NewAreaMovementCoroutine(areaTrigger));
     }
 
-    IEnumerator MoveToInitialPosition()
+    IEnumerator NewAreaMovementCoroutine(Area areaTrigger)
     {
-        OnMovementPerformed();
         input.EnableControls(false);
+        OnMovementCanceled();
+
+        _animator.SetBool("Moving", true);
+
+        float dot = Vector2.Dot((areaTrigger.EndPos - areaTrigger.StartPos).normalized, Vector2.right);
+        _playerSprite.UpdateSprite(dot);
 
         float lerpTime = 5f;
         float timer = 0;
 
         while (timer < lerpTime)
         {
-            transform.position = Vector3.Lerp(initialPos, startingPos, timer/lerpTime);
+            transform.position = Vector3.Lerp(areaTrigger.StartPos, areaTrigger.EndPos, timer/lerpTime);
             timer += Time.deltaTime;
             yield return null;
         }
 
-        OnMovementCanceled();
+        _animator.SetBool("Moving", false);
+
         input.EnableControls(true);
+
+        _autoMoveCoroutine = null;
     }
 }
