@@ -4,64 +4,34 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private UIPanel itemContextMenu;
-    [SerializeField] private UIPanel graveContextMenu;
-    [SerializeField] private GameObject graveHandInButton;
-    [SerializeField] private GameObject contextMenuCancelButton;
-
-    [SerializeField] private Transform contextMenuContainer;
-    [SerializeField] private Transform contextMenuLocation;
-
+    public static UIManager Instance { get; private set; }
     [SerializeField] private UIPanel startMenu;
-
     [SerializeField] private InputScriptableObject input;
 
-    private bool contextMenuOpen = false;
     private bool startMenuOpen = false;
+    public bool ContextMenuOpen = false;
 
     private void Awake()
     {
-        input.StartMenuOpened += ToggleStartMenu;
+        if (Instance != null)
+            Destroy(this);
 
-        CloseContextMenu();
+        Instance = this;
+    }
+
+    private void OnEnable()
+    {
+        input.StartMenuOpened += ToggleStartMenu;        
         startMenu.SetActive(false);
     }
-
-    private void Update()
+    private void OnDisable()
     {
-        contextMenuContainer.transform.position = contextMenuLocation.position;
+        input.StartMenuOpened -= ToggleStartMenu;
     }
 
-    public void ShowItemContextMenu()
-    {        
-        graveContextMenu.SetActive(false);
-        contextMenuCancelButton.SetActive(true);
-        itemContextMenu.SetActive(true);
-        contextMenuOpen = true;
-    }
-    public void ShowGraveContextMenu(bool questActive)
+    public void ToggleStartMenu()
     {
-        itemContextMenu.SetActive(false);        
-        contextMenuCancelButton.SetActive(true);
-        graveContextMenu.SetActive(true);
-
-        if (!questActive)
-            graveHandInButton.SetActive(false);
-
-        contextMenuOpen = true;
-    }
-
-    public void CloseContextMenu()
-    {
-        itemContextMenu.SetActive(false);
-        graveContextMenu.SetActive(false);
-        contextMenuCancelButton.SetActive(false);
-        contextMenuOpen = false;
-    }
-
-    private void ToggleStartMenu()
-    {
-        if (contextMenuOpen)
+        if (ContextMenuOpen)
             return;
 
         input.EnableControls(startMenuOpen);

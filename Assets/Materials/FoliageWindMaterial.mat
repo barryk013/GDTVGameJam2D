@@ -50,11 +50,11 @@ Material:
     - _Blend: 0.354
     - _BorderThickness: 0
     - _CellDensity: 4.14
-    - _PixelationAmount: 107.5
+    - _PixelationAmount: 55.87
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Speed: 1
-    - _WindIntensity: 0.1
+    - _WindIntensity: 0.28
     - _WindSpeed: 0.3
     m_Colors:
     - _BorderColour: {r: 0, g: 0, b: 0, a: 0}

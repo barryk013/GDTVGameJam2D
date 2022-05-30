@@ -18,7 +18,6 @@ public class Story : MonoBehaviour
 
     private bool storyInProgress = false;
 
-    public event Action InteractionCompleted;
     private Grave grave;
     private Quest quest;
 
@@ -69,6 +68,7 @@ public class Story : MonoBehaviour
         if (currentParagraphIndex == currentScript.Count - 1)
         {
             AudioManager.Instance.StopNarration();
+            quest.CompletedStoryRead = true;
             quest.StoryCompleted();
             grave.StoryCompleted();            
             return;
@@ -123,6 +123,6 @@ public class Story : MonoBehaviour
 
             currentCharIndex++;
             yield return timePerCharacter;
-        }  
+        }
     }
 }

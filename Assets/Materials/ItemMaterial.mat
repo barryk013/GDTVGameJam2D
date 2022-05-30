@@ -54,7 +54,7 @@ Material:
     - _ToggleBorder: 0
     - _TopBottomBorderThickness: 0.02
     m_Colors:
-    - _BorderColour: {r: 0, g: 1.6313726, b: 2, a: 1}
+    - _BorderColour: {r: 2.670157, g: 1.9667076, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color1: {r: 1, g: 1, b: 1, a: 0}
     - _Colour: {r: 1, g: 1, b: 1, a: 0}

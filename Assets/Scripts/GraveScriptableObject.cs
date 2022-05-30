@@ -7,6 +7,7 @@ public class GraveScriptableObject : ScriptableObject
 {
     public int Id;
     public string Name;
+    public string ContextMenuActionName;
 
 
 }
