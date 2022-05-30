@@ -17,6 +17,7 @@ public class Area : MonoBehaviour
     [SerializeField] private AudioClip backgroundMusic;
 
     private Player player;
+    [SerializeField] private LayerMask playerLayer;
 
     private void Awake()
     {
@@ -24,9 +25,11 @@ public class Area : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag(Constants.PlayerTag))
+        
+        int isPlayer = (int)Mathf.Pow(2, collision.gameObject.layer) & playerLayer;
+        if (isPlayer == 0)
             return;
-
+        
         player = collision.GetComponent<Player>();
         nextArea.Primed = false;
 

@@ -20,4 +20,4 @@ MonoBehaviour:
     captain on his sinking ship.
 
     How long does a memory last?'
-  VoiceNarration: {fileID: 8300000, guid: f362b8cdbb4f9f24ab714977aee7745a, type: 3}
+  VoiceNarration: {fileID: 0}

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14706e8e272d0ec40a9eca0db7500aa4, type: 3}
   m_Name: Grave4_Paragraph2
   m_EditorClassIdentifier: 
-  Text: "You are defined by others, \r\nAs they are defined by you.\r\nYou are memories
-    and experience. \r\nAs are they."
-  VoiceNarration: {fileID: 8300000, guid: 71b24aa73d44486469b420e269dd3316, type: 3}
+  Text: "You are defined by others, \r\nAs they are defined by you.\r\n\nYou are
+    memories and experience. \r\nAs are they."
+  VoiceNarration: {fileID: 0}

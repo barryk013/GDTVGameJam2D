@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text: 'When does one "you" end and another begin?
 
-    
 
-    After all, you never
-    stand in the same river twice.'
-  VoiceNarration: {fileID: 8300000, guid: 4d76527ca89e34e44ac201d20a50cff0, type: 3}
+
+    After all, you never stand
+    in the same river twice.'
+  VoiceNarration: {fileID: 0}

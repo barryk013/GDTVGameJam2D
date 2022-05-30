@@ -9,7 +9,5 @@ public class Constants
     public static readonly float TextTypingInterval = 2f;
     public static readonly float HintDisplayTime = 5f;
     public static readonly float FadeTime = 2f;
-
-    public static readonly string PlayerTag = "Player";
 }
 

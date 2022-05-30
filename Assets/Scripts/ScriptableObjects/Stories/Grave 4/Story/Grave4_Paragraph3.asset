@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Text: "Every morning you wake up as a different person.\r\nAn ever-changing amalgamation
     of perceptions.\r\nEach new revelation is a new death and life.\r"
-  VoiceNarration: {fileID: 8300000, guid: 4d76527ca89e34e44ac201d20a50cff0, type: 3}
+  VoiceNarration: {fileID: 0}
