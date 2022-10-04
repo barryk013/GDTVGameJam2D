@@ -14,6 +14,19 @@ public class PlayerUI : MonoBehaviour
 
     [SerializeField] private InputScriptableObject input;
 
+    private void Awake()
+    {
+        var itemRT = itemContextMenu.GetComponent<RectTransform>();
+        var graveRT = graveContextMenu.GetComponent<RectTransform>();
+#if UNITY_ANDROID
+        itemRT.sizeDelta = new Vector2(itemRT.sizeDelta.x, 5);
+        graveRT.sizeDelta = new Vector2(graveRT.sizeDelta.x, 5);
+#else
+        itemRT.sizeDelta = new Vector2(itemRT.sizeDelta.x, 3);
+        graveRT.sizeDelta = new Vector2(graveRT.sizeDelta.x, 3);
+#endif
+    }
+
     private void Start()
     {
         CloseContextMenu();

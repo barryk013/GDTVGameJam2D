@@ -14,8 +14,10 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private Selectable DefaultSelectedButton;
     [SerializeField] private AudioSource mainMenuAudioSource;
 
-    private void Awake()
+
+    private void OnEnable()
     {
+        settingsMenu.SetActive(false);
         DefaultSelectedButton.Select();
         blackScreen.alpha = 0;
     }
@@ -47,5 +49,10 @@ public class MainMenuUI : MonoBehaviour
             yield return null;
         }
         SceneManager.LoadScene(1);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
